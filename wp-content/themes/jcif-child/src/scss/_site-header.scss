@@ -1,0 +1,44 @@
+header.site-header {
+  #main-header {
+    .site-main-header-wrap {
+      .site-main-header-inner-wrap {
+        .site-header-main-section-left {
+        }
+        .site-header-main-section-right {
+          button,
+          .button {
+            min-width: 120px;
+            text-align: center;
+            display: flex;
+            padding: 10px 20px;
+            line-height: 13px;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            min-height: 40px;
+          }
+          [data-section="kadence_customizer_header_search"] {
+            .search-toggle-open-container {
+              button {
+                &:hover {
+                  background-color: $blue;
+                  color: $white;
+                  border-color: $blue;
+                }
+                &.search-toggle-open {
+                  .search-toggle-label {
+                    order: 2;
+                  }
+                  .search-toggle-icon {
+                    order: 1;
+                    margin-right: 4px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

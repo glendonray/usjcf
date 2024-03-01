@@ -1,0 +1,17 @@
+{
+    "name": "ad/atomic-posts",
+    "title": "Atomic Posts",
+    "description": "A block that can display any post type with taxonomy filters and pagination.",
+    "style": [ "file:./atomic-posts.css" ],
+    "viewScript": [ "file:./atomic-posts-min.js", "atomic-posts-script" ],
+    "category": "atomicdust",
+    "icon": "grid-view",
+    "keywords": ["posts", "grid", "custom", "post", "type", "taxonomy", "term"],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "atomic-posts.php"
+    },
+    "supports": {
+        "anchor": true
+    }
+}

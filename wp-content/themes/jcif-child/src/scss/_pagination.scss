@@ -1,0 +1,56 @@
+.paginationjs {
+  margin-top: 56px;
+  margin-bottom: 56px;
+  .paginationjs-pages {
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      li {
+        color: $blue;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 16px;
+        transition: $speed $ease;
+        cursor: pointer;
+        &.disabled {
+          cursor: auto;
+        }
+        &.paginationjs-prev {
+          margin-right: 8px;
+          &.active {
+          }
+        }
+        &.paginationjs-page {
+          margin: 0 8px;
+          &:hover {
+            color: $primary;
+          }
+          &.active {
+            color: $primary;
+            border: 1px solid $primary;
+            width: 30px;
+            height: 30px;
+            border-radius: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            // margin-left: 0;
+            // margin-right: 0;
+          }
+          &.paginationjs-last {
+          }
+        }
+        &.paginationjs-ellipsis {
+        }
+        &.paginationjs-next {
+          margin-left: 8px;
+        }
+      }
+    }
+  }
+}

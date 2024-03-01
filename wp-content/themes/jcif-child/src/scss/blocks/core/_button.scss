@@ -1,0 +1,57 @@
+/*
+	Extends the default WordPress block button to match Bootstrap's.
+	We also have a custom ACF Bootstrap button block, which is preferred, but some clients may use the WP button.
+	Bootstrap button styles are in Bootstrap core, _common.scss, and some variables in _variables.scss.
+*/
+.wp-block-button {
+	a.wp-block-button__link {
+		@extend .btn;
+		@extend .btn-primary;
+	}
+}
+
+.wp-block-button__link {
+	@extend .btn;
+	@extend .btn-primary;
+}
+
+.wp-block-button {
+	.wp-block-button__link {
+		@extend .btn;
+	}
+
+	&:not(.is-style-outline) {
+		.wp-block-button__link {
+			@extend .btn-primary;
+		}
+	}
+
+	&.btn-lg {
+		padding: 0;
+
+		.wp-block-button__link {
+			@extend .btn-lg;
+		}
+	}
+
+	&.btn-sm {
+		padding: 0;
+
+		.wp-block-button__link {
+			@extend .btn-sm;
+		}
+	}
+
+	&.btn-link {
+		.wp-block-button__link {
+			@extend .btn-link;
+			@extend a.btn-link!optional;
+		}
+	}
+
+	&.is-style-outline {
+		.wp-block-button__link {
+			@extend .btn-outline-primary;
+		}
+	}
+}

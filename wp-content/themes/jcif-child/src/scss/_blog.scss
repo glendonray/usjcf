@@ -1,0 +1,121 @@
+.blog-cat-list {
+    li {
+        a {
+            color: $blue;
+        }
+    }
+}
+.wp-block-post-comments-form {
+    textarea {
+        &::placeholder {
+            color: $blue !important;
+        }
+    }
+    .float-label {
+        color: $blue !important;
+    }
+    .comment-form-cookies-consent {
+        label {
+            margin-bottom: 0 !important;
+        }
+    }
+}
+.single-blog-sidebar {
+    .blog-cat-list {
+        font-size: rem-calc(18);
+        text-decoration: none;
+        text-transform: none;
+        margin: 0 0 20px;
+        padding: 0;
+        list-style-type: none;
+        li {
+            line-height: 1.8;
+            a {
+                text-decoration: none;
+            }
+        }
+    }
+}
+.blog {
+    .content-area {
+        margin-top: 2.5rem;
+    }
+    .pagination { 
+        .nav-links {
+            display: flex;
+        }
+    }
+}
+.single-career {
+    .content-area {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}
+.kb-query-item.career {
+    .wp-block-post-excerpt__excerpt {
+        margin-bottom: 0;
+    }
+    .wp-block-post-excerpt__more-link {
+        display: none;
+    }
+}
+.wp-block-search.blog-search {
+    .wp-block-search__inside-wrapper {
+        background: #ffffff !important;
+        border-color: $blue !important;
+        border-radius: 25px !important;
+        flex-direction: row-reverse;
+        width: 130px;
+        .wp-block-search__input {
+            background: transparent !important;
+            border: none;
+            text-transform: uppercase;
+            font-weight: 800;
+            font-size: rem-calc(13) !important;
+            color: $blue !important;
+            padding-left: 0;
+            padding-right: 0;
+
+            &::placeholder {
+                color: $blue;
+                font-size: rem-cac(13) !important;
+                letter-spacing: 1.43px;
+                text-transform: uppercase;
+            }
+        }
+        .wp-block-search__button {
+            margin-left: 0;
+            padding-right: 0;
+            background-color: transparent !important;
+            svg {
+                transform: rotate(270deg);
+            }
+        }
+    }
+}
+
+.wp-block-post-author__avatar {
+    img {
+        border-radius: 20px;
+    }
+}
+    .wp-block-post-author__name {
+        margin-bottom: 20px !important;
+        a {
+            color: #00587D;
+            font-family: "Red Hat Display";
+            font-size: rem-calc(18);
+            font-style: normal;
+            font-weight: 700;
+            line-height: rem-calc(20); 
+        }
+    }
+    .wp-block-post-author__bio {
+        color: #666;
+        font-family: "Red Hat Display";
+        font-size: rem-calc(12);
+        font-style: normal;
+        font-weight: 400;
+        line-height: rem-calc(20);
+    }

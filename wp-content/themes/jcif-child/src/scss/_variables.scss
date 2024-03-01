@@ -1,0 +1,101 @@
+/**
+	Add custom variables and Bootstrap overrides here.
+**/
+
+/* 	
+	Grid 
+	If You change breakpoints, be sure to update theme-helpers.php -> bt_get_breakpoint();
+*/
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  // Increased to match Kadence plugin.
+  lg: 1024px,
+  xl: 1200px,
+);
+
+$grid-columns: 24;
+//$grid-gutter-width: 30px;
+
+/* 
+	Fonts
+ */
+$enable-responsive-font-sizes: false;
+
+$font-size-base: 1rem;
+$font-size-sm: $font-size-base * 0.75;
+$font-size-md: $font-size-base * 1.25;
+$font-size-lg: $font-size-base * 2.25;
+$font-size-xl: $font-size-base * 3;
+
+$font-family-sans-serif: "Red Hat Display", -apple-system, BlinkMacSystemFont,
+  "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
+  "Segoe UI Emoji", "Segoe UI Symbol";
+//$font-family-serif: serif;
+
+$headings-font-family: "Pathway Gothic One";
+//$headings-font-weight: 400;
+
+$h1-font-size: $font-size-base * 3.625;
+$h2-font-size: $font-size-base * 3;
+$h3-font-size: $font-size-base * 2.25;
+$h4-font-size: $font-size-base * 1.875;
+$h5-font-size: $font-size-base * 1.625;
+$h6-font-size: $font-size-base * 1.25;
+
+/* 
+	Add separate font sizes for small screens. 
+	Right now these default to the same as desktop, but you can enable them by adding
+	multipliers to the end: $h1-font-size-sm: $h1-font-size * 0.9;
+*/
+$h1-font-size-sm: $h1-font-size;
+$h2-font-size-sm: $h2-font-size;
+$h3-font-size-sm: $h3-font-size;
+$h4-font-size-sm: $h4-font-size;
+$h5-font-size-sm: $h5-font-size;
+$h6-font-size-sm: $h6-font-size;
+
+$paragraph-margin-bottom: 1.5em;
+
+/* 
+	Colors
+	Update the color palette in theme-functions.php -> bt_editor_add_theme_support()
+*/
+
+$blue: #3366cc;
+$navy: #13293d;
+$sea: #006494;
+$teal: #247ba0;
+$white: #e8f1f2;
+$orange: #f88639;
+
+$primary: $blue;
+//$primary:
+//$secondary:
+//$success:
+//$info:
+//$warning:
+//$danger:
+
+/*
+	Buttons
+*/
+//$border-radius: 5px;
+
+//$btn-border-radius: 5px;
+//$btn-border-radius-lg: 5px;
+//$btn-border-radius-sm: 5px;
+//$btn-padding-y: 0.5rem;
+//$btn-padding-x: 2rem;
+//$btn-padding-y-lg: 0.5rem;
+//$btn-padding-x-lg: 2rem;
+
+//$btn-font-size: 1.0625rem;
+//$btn-font-size-lg: $btn-font-size;
+
+/* 
+	Misc
+ */
+$speed: 250ms;
+$ease: ease-in-out;

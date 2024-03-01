@@ -1,0 +1,24 @@
+/** 
+	Core blocks and other shared styles. 
+	Does not include custom blocks, which have their own .css files.
+**/
+@import "blocks/align";
+@import "blocks/kadence";
+@import "blocks/core/button";
+@import "blocks/core/columns";
+@import "blocks/core/gallery";
+@import "blocks/core/group";
+@import "blocks/core/heading";
+@import "blocks/core/image";
+@import "blocks/core/media_and_text";
+@import "blocks/core/pullquote";
+@import "blocks/core/separator";
+@import "blocks/core/table";
+@import "blocks/core/video";
+@import "blocks/core/widgets";
+
+// Add custom blocks here.
+// @import "blocks/custom/accordion";
+// @import "blocks/custom/carddeck";
+// @import "blocks/custom/pageheader";
+// @import "blocks/custom/slickslider";

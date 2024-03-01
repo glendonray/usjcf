@@ -1,0 +1,162 @@
+// .form,
+// .gform_wrapper.gravity-theme [id*="gform"] {
+//   input {
+//     &[type="email"],
+//     &[type="text"] {
+//       font-size: 14px;
+//       line-height: 16px;
+//       border-radius: 36px;
+//       border: 1px solid $neutral-200;
+//       height: 48px;
+//       padding: 8px 16px;
+//     }
+//   }
+// }
+
+// .gform_wrapper.gravity-theme {
+//   .gform_validation_errors,
+//   .validation_message {
+//     padding: 12px;
+//     border-radius: 4px;
+//     font-size: 12px;
+//     font-weight: bold;
+//     color: $primary;
+//     border-color: $primary;
+//   }
+//   .gform_validation_errors {
+//     color: $primary;
+//   }
+// }
+
+.gform_confirmation_wrapper.gravity-theme {
+  .gform_confirmation_message {
+    background-color: $white;
+    color: $navy;
+    border-radius: 4px;
+    border: 1px solid $blue;
+    padding: 16px;
+    font-weight: bold;
+    font-style: italic;
+  }
+}
+
+@mixin input-styles {
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  textarea {
+    border-radius: 4px !important;
+    border-color: $navy !important;
+    border-width: 1px !important;
+    border-style: solid !important;
+    background: transparent !important;
+    padding: 8px !important;
+    // font-family: $font-family-sans-serif !important;
+    font-size: 1rem;
+    display: block;
+    height: auto;
+    color: $navy;
+    &::placeholder {
+      color: transparentize($color: $navy, $amount: 0.5);
+      font-size: 1rem;
+    }
+    &:focus {
+      box-shadow: none;
+    }
+  }
+}
+
+// @mixin input-submit {
+//   input[type="submit"].button,
+//   button[type="submit"] {
+//     border-radius: 25px !important;
+//     color: #fff !important;
+//     font-family: $font-family-sans-serif;
+//     font-size: 13px;
+//     font-style: normal;
+//     font-weight: 800 !important;
+//     line-height: normal;
+//     letter-spacing: 1.43px;
+//     text-transform: uppercase;
+//     display: block !important;
+//     padding: 16px 52px !important;
+//     background-color: #007db3 !important;
+//     margin-top: 20px;
+//     &:hover {
+//       background-color: $yellow !important;
+//       color: $primary !important;
+//       border-color: $yellow;
+//       border-radius: 25px !important;
+//     }
+//   }
+// }
+
+@mixin input-labels {
+  label {
+    color: $navy !important;
+    font-size: 10px;
+    // font-family: $font-family-sans-serif;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: $primary;
+    margin-bottom: 2px;
+    .gfield_required {
+      text-transform: none;
+    }
+  }
+}
+
+.gform_wrapper[id*="gform"] {
+  form[id*="gform"] {
+    .gform_fields {
+      grid-row-gap: 24px;
+    }
+    .gform_footer {
+      // @include input-submit;
+    }
+
+    @include input-labels;
+    @include input-styles;
+
+    //Fieldset Style
+    fieldset {
+      legend {
+        margin-bottom: 0;
+        text-transform: uppercase;
+        .gfield_required {
+          text-transform: none;
+        }
+      }
+      .ginput_container {
+        &.ginput_container_radio {
+          label {
+            text-transform: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}
+
+/*
+  Select Dropdown Styling
+  */
+select,
+select.kb-filter {
+  -webkit-appearance: none;
+  font-size: 1rem;
+  border: 1px solid $navy !important;
+  border-radius: 4px !important;
+  background: none !important;
+  // background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="36" height="35" viewBox="0 0 36 35" fill="none"%3E%3Cpath d="M26.332 13.125L17.582 21.875L8.83203 13.125" stroke="%2300587D" stroke-width="2"/%3E%3C/svg%3E') !important;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Ctitle%3Edown-arrow%3C%2Ftitle%3E%3Cg%20fill%3D%22%23000000%22%3E%3Cpath%20d%3D%22M10.293%2C3.293%2C6%2C7.586%2C1.707%2C3.293A1%2C1%2C0%2C0%2C0%2C.293%2C4.707l5%2C5a1%2C1%2C0%2C0%2C0%2C1.414%2C0l5-5a1%2C1%2C0%2C1%2C0-1.414-1.414Z%22%20fill%3D%22%23000000%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: calc(100% - 16px) center !important;
+  padding: 8px;
+  cursor: pointer;
+}

@@ -1,0 +1,57 @@
+.screen-reader-text {
+	@extend .sr-only;
+}
+
+.sticky {
+}
+
+.bypostauthor {
+	@include font-bold();
+}
+
+.alignleft {
+	float: left;
+	margin: 0.375em 1.75em 1.75em 0;
+}
+
+.alignright {
+	float: right;
+	margin: 0.375em 0 1.75em 1.75em;
+}
+
+.aligncenter {
+	display: block;
+	margin: 0 auto;
+}
+
+.wp-caption {
+	margin-bottom: 1.75em;
+	max-width: 100%;
+
+	img[class*="wp-image-"] {
+		display: block;
+		margin: 0;
+	}
+
+	.wp-caption-text {
+		color: $gray-600;
+		font-style: italic;
+	}
+}
+
+/* Galleries */
+/* The Gallery container */
+.gallery {
+	.gallery-item {
+		img {
+		}
+	}
+
+	dl,
+	dt {
+	}
+
+	.gallery-caption {
+		@include font-italic();
+	}
+}

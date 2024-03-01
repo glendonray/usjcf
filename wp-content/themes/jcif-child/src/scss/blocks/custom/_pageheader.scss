@@ -1,0 +1,89 @@
+/*
+	Page headers
+	Mimics many .wp-block-cover styles on desktop, but includes enhancements.
+*/
+.pageheader {
+	background-color: #fff;
+	padding: $grid-gutter-width * 2 0;
+	position: relative;
+
+	&--full_width_photo {
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center center;
+		@include media-breakpoint-up(lg) {
+			padding: 150px 0;
+		}
+	}
+
+	&__content {
+		> *:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	&--dim {
+		> .container {
+			position: relative;
+			z-index: 1;
+		}
+
+		&:before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			background-color: #000;
+			opacity: 0.5;
+			z-index: 0;
+		}
+
+		&--10 {
+			&:before {
+				opacity: 0.1;
+			}
+		}
+		&--20 {
+			&:before {
+				opacity: 0.2;
+			}
+		}
+		&--30 {
+			&:before {
+				opacity: 0.3;
+			}
+		}
+		&--40 {
+			&:before {
+				opacity: 0.4;
+			}
+		}
+		&--50 {
+			&:before {
+				opacity: 0.5;
+			}
+		}
+		&--60 {
+			&:before {
+				opacity: 0.6;
+			}
+		}
+		&--70 {
+			&:before {
+				opacity: 0.7;
+			}
+		}
+		&--80 {
+			&:before {
+				opacity: 0.8;
+			}
+		}
+		&--90 {
+			&:before {
+				opacity: 0.9;
+			}
+		}
+	}
+}

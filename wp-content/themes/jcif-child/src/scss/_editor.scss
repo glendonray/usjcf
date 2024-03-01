@@ -1,0 +1,17 @@
+/**
+	Editor-only styles.
+**/
+
+/*
+	Override Noto Serif
+*/
+> * {
+  font-family: $font-family-base;
+}
+
+.edit-post-visual-editor__post-title-wrapper {
+  h1 {
+    text-transform: none;
+    font-size: 3.5rem;
+  }
+}

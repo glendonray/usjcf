@@ -1,0 +1,21 @@
+.widgets,
+.widget-container {
+	@include zerolist();
+}
+
+.widget-container {
+	margin-bottom: $grid-gutter-width;
+
+	ul,
+	li {
+		@include zerolist();
+	}
+
+	li {
+		margin-bottom: $grid-gutter-width / 3;
+	}
+
+	.widget-title {
+		margin-bottom: $grid-gutter-width / 2;
+	}
+}

@@ -1,0 +1,53 @@
+.kb-table-of-content-nav {
+  .kb-table-of-content-wrap {
+    .kb-table-of-content-list {
+      margin-top: 0 !important;
+      list-style-type: none !important;
+      padding-left: 0 !important;
+    }
+  }
+}
+
+// Hide excerpt "Read More"
+.wp-block-post-excerpt {
+  .wp-block-post-excerpt__excerpt {
+    .wp-block-post-excerpt__more-link {
+      display: none;
+    }
+  }
+}
+
+// Arrow Styles for Kadence Carousel/Slider Blocks
+// .kt-blocks-carousel {
+//   .splide__arrows {
+//     display: flex;
+//     .splide__arrow {
+//       border: none;
+//       color: $blue;
+//       opacity: 1;
+//       width: auto;
+//       height: auto;
+//       @include media-breakpoint-down(sm) {
+//         background-color: transparent;
+//       }
+//       &::before {
+//         content: "";
+//         width: 62px;
+//         height: 52.5px;
+//       }
+//       &[class*="prev"] {
+//         &:before {
+//           background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="62" height="53" viewBox="0 0 62 53" fill="none"%3E%3Cpath d="M38.75 13.1155L23.25 26.2309L38.75 39.3462" stroke="%2300587D" stroke-width="2"/%3E%3C/svg%3E');
+//         }
+//       }
+//       &[class*="next"] {
+//         &::before {
+//           background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="62" height="53" viewBox="0 0 62 53" fill="none"%3E%3Cpath d="M23.25 39.8845L38.75 26.7691L23.25 13.6538" stroke="%2300587D" stroke-width="2"/%3E%3C/svg%3E');
+//         }
+//       }
+//       svg {
+//         display: none;
+//       }
+//     }
+//   }
+// }
