@@ -56,6 +56,7 @@ Thumbs.db
 !*.yml
 !my_known_hosts
 !backgroundsize.min.htc
+!deploy.sh
 
 # track favicon files, if they exist
 !android-chrome-*.png

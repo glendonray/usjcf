@@ -15,39 +15,48 @@ if ( ! function_exists( 'gg_enqueue' ) ) {
 	 * Enqueue scripts and styles.
 	 */
 	function gg_enqueue() {
+		$theme_dir = get_stylesheet_directory();
+		$theme_uri = get_stylesheet_directory_uri();
 
 		/**
-		 * Enqueue fonts. Add wp_enqueue_style lines above.
+		 * Main theme stylesheet — compiled from src/scss/style.scss via wp-scripts.
+		 * Version is a content hash from the generated .asset.php file.
 		 */
-		wp_enqueue_style( 'gg-base-style', get_stylesheet_directory_uri() . '/dist/css/style.css', array(), '0.0.1' );
+		$style_asset = file_exists( "$theme_dir/dist/style.asset.php" )
+			? include "$theme_dir/dist/style.asset.php"
+			: array( 'version' => '1.0.0' );
+		wp_enqueue_style( 'gg-base-style', "$theme_uri/dist/style.css", array(), $style_asset['version'] );
 
 		/**
-		 * Use latest jQuery.
+		 * Head scripts (e.g. Popper) — loaded before page content.
 		 */
-		wp_deregister_script( 'jquery' );
-		wp_register_script( 'jquery', get_stylesheet_directory_uri() . '/dist/js/jquery.min.js', array(), '3.4.1', false );
-		wp_enqueue_script( 'jquery' );
+		$head_asset = file_exists( "$theme_dir/dist/head.asset.php" )
+			? include "$theme_dir/dist/head.asset.php"
+			: array( 'dependencies' => array(), 'version' => '1.0.0' );
+		wp_enqueue_script( 'ad-head', "$theme_uri/dist/head.js", $head_asset['dependencies'], $head_asset['version'], false );
 
 		/**
-		 * Enqueue scripts in head.
-		 * This is a concatinated, minified file of scripts from ./src/js/head/
+		 * Footer scripts — loaded at bottom of page. Requires jQuery (bundled with WordPress).
 		 */
-		wp_enqueue_script( 'ad-head', get_stylesheet_directory_uri() . '/dist/js/head.min.js', array(), '1.0', false );
-
-		/**
-		 * Enqueue scripts in footer.
-		 * This is a concatinated, minified file of scripts from ./src/js/footer/
-		 */
-		wp_enqueue_script( 'ad-scripts', get_stylesheet_directory_uri() . '/dist/js/scripts.min.js', array(), '0.0.2', true );
+		$scripts_asset = file_exists( "$theme_dir/dist/scripts.asset.php" )
+			? include "$theme_dir/dist/scripts.asset.php"
+			: array( 'dependencies' => array(), 'version' => '1.0.0' );
+		$scripts_deps = array_merge( $scripts_asset['dependencies'], array( 'jquery' ) );
+		wp_enqueue_script( 'ad-scripts', "$theme_uri/dist/scripts.js", $scripts_deps, $scripts_asset['version'], true );
 	}
 }
 
 if ( ! function_exists( 'bt_enqueue_block_editor_assets' ) ) {
 	/**
-	 * Enqueue scripts and styles in admin.
+	 * Enqueue editor styles in the block editor.
 	 */
 	function bt_enqueue_block_editor_assets() {
-		wp_enqueue_style( 'bt-editor-styles', get_stylesheet_directory_uri() . '/dist/css/editor-styles.css', null, '1.0' );
+		$theme_dir   = get_stylesheet_directory();
+		$theme_uri   = get_stylesheet_directory_uri();
+		$asset       = file_exists( "$theme_dir/dist/editor-styles.asset.php" )
+			? include "$theme_dir/dist/editor-styles.asset.php"
+			: array( 'version' => '1.0.0' );
+		wp_enqueue_style( 'bt-editor-styles', "$theme_uri/dist/editor-styles.css", array(), $asset['version'] );
 	}
 }
 add_action( 'enqueue_block_editor_assets', 'bt_enqueue_block_editor_assets' );
@@ -59,7 +68,7 @@ if ( ! function_exists( 'bt_override_mp6_tinymce_styles' ) ) {
 	function bt_override_mp6_tinymce_styles( $mce_init ) {
 
 		// make sure we don't override other custom <code>content_css</code> files
-		$content_css = get_template_directory_uri() . '/dist/css/editor-styles.css';
+		$content_css = get_stylesheet_directory_uri() . '/dist/editor-styles.css';
 		if ( isset( $mce_init['content_css'] ) ) {
 			$content_css .= ',' . $mce_init['content_css'];
 		}
