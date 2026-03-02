@@ -1,31 +1,53 @@
-// Override bootstrap variables or define your own variables in _variables.scss
+// =============================================================================
+// Main theme stylesheet entry point
+// Import order matters — base classes must be defined before @extend uses them.
+// =============================================================================
+
+// 1. Variables & CSS custom properties (must be first)
+@use "sass:math";
 @import "variables";
 
-// Many features of bootstrap are disabled to avoid loading unnecessary CSS.
-// Customize _bootstrap.scss to add additional features.
-@import "bootstrap";
-
-// Basetheme SCSS files. Add additional templates here.
+// 2. Mixins (breakpoints, rem-calc, etc.)
+@import "breakpoints";
 @import "mixins";
 
-// Common styles
-@import "common-frontend";
+// 3. Base reset
+@import "reset";
+
+// 4. Layout — container, row, col-* (must be before blocks that @extend these)
+@import "grid";
+
+// 5. Typography — h1-h6 elements and .h1-.h6 classes, .sr-only
+//    (must be before _wordpress.scss which @extends .sr-only)
+@import "typography";
+
+// 6. Components — must be before blocks that @extend these
+@import "buttons";
+@import "nav";
+@import "tables";
+@import "cards";
+
+// 7. Theme-specific styles
 @import "common";
 
-// Blocks and widgets
+// 8. Gutenberg editor color/size utility classes
+@import "utilities";
+
+// 9. Forms (Gravity Forms)
+@import "forms";
+
+// 10. WordPress standard classes (extends .sr-only from typography)
 @import "wordpress";
+
+// 11. Blocks (extends .row, .col, .btn, .table etc. — must be after all of the above)
 @import "blocks";
-@import "widgets";
-@import "alertmessage";
 @import "./blocks/custom/atomic-posts";
 
-// Forms/Inputs
-@import "forms";
+// 12. Widgets
+@import "widgets";
 
-// Forms/Inputs
-@import "forms";
-
-// Template parts and templates
+// 13. Template parts
+@import "alertmessage";
 @import "site-header";
 @import "site-header-sticky";
 @import "site-footer";
@@ -34,17 +56,9 @@
 @import "single-missionary";
 @import "single-program";
 
-// Pages
-// @import "./pages/home";
-
-// Plugins
-
-// Animations
+// 14. Animations
 @import "animations";
 
-// Utilities
-@import "utilities";
-
-// Vendor Overwrites
+// 15. Kadence theme overrides (last, highest specificity)
 @import "./kadence_theme/kadence";
 @import "./kadence_theme/typography";

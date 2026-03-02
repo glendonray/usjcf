@@ -26,9 +26,4 @@ module.exports = {
 			'src/js/blocks/starter-block/index.js'
 		),
 	},
-	output: {
-		...defaultConfig.output,
-		// Output to dist/ instead of wp-scripts default build/
-		path: path.resolve( __dirname, 'dist' ),
-	},
 };

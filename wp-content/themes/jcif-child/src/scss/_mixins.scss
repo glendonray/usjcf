@@ -26,16 +26,13 @@
 	Usage: font-size: rem-calc(24);
 */
 @function strip-unit($num) {
-	@return $num / ($num * 0 + 1);
+	@return math.div($num, $num * 0 + 1);
 }
 
-/*
-	Bootstrap 4 uses 1rem for the HTML element
-*/
 $rem-base: 16px;
 
 @function convert-to-rem($value, $base-value: $rem-base) {
-	$value: strip-unit($value) / strip-unit($base-value) * 1rem;
+	$value: math.div(strip-unit($value), strip-unit($base-value)) * 1rem;
 	@if ($value == 0rem) {
 		$value: 0;
 	} // Turn 0rem into 0

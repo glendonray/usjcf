@@ -1,0 +1,133 @@
+// =============================================================================
+// Buttons
+// Provides .btn, .btn-primary, .btn-outline-primary, .btn-link, .btn-lg, .btn-sm
+// Used via @extend in block SCSS and hardcoded in parent theme PHP templates.
+// =============================================================================
+
+.btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: $btn-padding-y $btn-padding-x;
+	font-family: $font-family-sans-serif;
+	font-size: $btn-font-size;
+	font-weight: 400;
+	line-height: 1.5;
+	text-align: center;
+	text-decoration: none;
+	white-space: nowrap;
+	vertical-align: middle;
+	border: 1px solid transparent;
+	border-radius: $btn-border-radius;
+	cursor: pointer;
+	user-select: none;
+	transition: color $speed $ease, background-color $speed $ease, border-color $speed $ease, box-shadow $speed $ease;
+
+	&:focus,
+	&:focus-visible {
+		outline: 2px solid $blue;
+		outline-offset: 2px;
+	}
+
+	&:disabled,
+	&[disabled] {
+		opacity: 0.65;
+		cursor: not-allowed;
+	}
+}
+
+// Filled primary
+.btn-primary {
+	color: #fff;
+	background-color: $blue;
+	border-color: $blue;
+
+	&:hover {
+		color: #fff;
+		background-color: darken( $blue, 10% );
+		border-color: darken( $blue, 12% );
+	}
+}
+
+// Outlined primary
+.btn-outline-primary {
+	color: $blue;
+	background-color: transparent;
+	border-color: $blue;
+
+	&:hover {
+		color: #fff;
+		background-color: $blue;
+		border-color: $blue;
+	}
+}
+
+// Navy filled
+.btn-navy {
+	color: #fff;
+	background-color: $navy;
+	border-color: $navy;
+
+	&:hover {
+		color: #fff;
+		background-color: darken( $navy, 8% );
+		border-color: darken( $navy, 10% );
+	}
+}
+
+// Sea/teal filled
+.btn-sea {
+	color: #fff;
+	background-color: $sea;
+	border-color: $sea;
+
+	&:hover {
+		color: #fff;
+		background-color: darken( $sea, 8% );
+		border-color: darken( $sea, 10% );
+	}
+}
+
+// Orange filled
+.btn-orange {
+	color: #fff;
+	background-color: $orange;
+	border-color: $orange;
+
+	&:hover {
+		color: #fff;
+		background-color: darken( $orange, 8% );
+		border-color: darken( $orange, 10% );
+	}
+}
+
+// Link style (used in parent theme .btn.link, Gutenberg link button)
+.btn-link {
+	color: $blue;
+	background-color: transparent;
+	border-color: transparent;
+	text-decoration: underline;
+	padding-left: 0;
+	padding-right: 0;
+
+	&:hover {
+		color: darken( $blue, 15% );
+	}
+}
+
+// Sizes
+.btn-lg {
+	padding: $btn-padding-y-lg $btn-padding-x-lg;
+	font-size: $btn-font-size-lg;
+}
+
+.btn-sm {
+	padding: $btn-padding-y-sm $btn-padding-x-sm;
+	font-size: $btn-font-size-sm;
+}
+
+// Block (full-width)
+.btn-block {
+	display: flex;
+	width: 100%;
+}

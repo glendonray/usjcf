@@ -1,0 +1,49 @@
+// =============================================================================
+// Cards
+// Provides .card and inner element classes used in parent theme PHP templates.
+// Parent theme uses: .card, .card-thumbnail, .card-content, .card-description
+// =============================================================================
+
+.card {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+	background-color: #fff;
+	background-clip: border-box;
+}
+
+.card-body {
+	flex: 1 1 auto;
+	padding: 1.25rem;
+}
+
+.card-header {
+	padding: 0.75rem 1.25rem;
+	border-bottom: 1px solid $gray-300;
+}
+
+.card-footer {
+	padding: 0.75rem 1.25rem;
+	border-top: 1px solid $gray-300;
+}
+
+// Custom card classes used in parent theme templates
+.card-thumbnail {
+	position: relative;
+	overflow: hidden;
+
+	img {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+}
+
+.card-content {
+	padding: 1rem;
+}
+
+.card-description {
+	font-size: $font-size-sm;
+}

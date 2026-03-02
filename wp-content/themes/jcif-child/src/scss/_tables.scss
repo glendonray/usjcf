@@ -1,0 +1,50 @@
+// =============================================================================
+// Tables
+// Provides .table and .table-striped used via @extend in blocks/core/_table.scss
+// =============================================================================
+
+.table {
+	width: 100%;
+	margin-bottom: $paragraph-margin-bottom;
+	color: $body-color;
+	border-collapse: collapse;
+
+	th,
+	td {
+		padding: 0.75rem;
+		vertical-align: top;
+		border-top: 1px solid $gray-300;
+	}
+
+	thead th {
+		vertical-align: bottom;
+		border-bottom: 2px solid $gray-300;
+		font-family: $headings-font-family;
+	}
+
+	tbody + tbody {
+		border-top: 2px solid $gray-300;
+	}
+}
+
+.table-striped {
+	tbody tr:nth-of-type( odd ) {
+		background-color: rgba( 0, 0, 0, 0.05 );
+	}
+}
+
+.table-bordered {
+	border: 1px solid $gray-300;
+
+	th,
+	td {
+		border: 1px solid $gray-300;
+	}
+}
+
+.table-responsive {
+	display: block;
+	width: 100%;
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+}

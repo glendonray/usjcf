@@ -1,54 +1,47 @@
-/*
-	Wrap all styles so we don't change any styles outside of Gutenberg editor.
-*/
+// =============================================================================
+// Block editor stylesheet
+// All @import rules MUST be at the top level — Dart Sass does not support
+// @import inside a CSS rule (nested @import is a LibSass-only feature).
+// =============================================================================
+
+@use "sass:math";
+
+// Base partials (import at top level, then scope styles below)
+@import "variables";
+@import "breakpoints";
+@import "mixins";
+@import "reset";
+@import "grid";
+@import "typography";
+@import "buttons";
+@import "tables";
+@import "cards";
+
+// These apply globally within the editor iframe — no @import inside selectors
+@import "common";
+@import "utilities";
+@import "forms";
+@import "wordpress";
+@import "blocks";
+@import "widgets";
+@import "blog";
+
+// Editor-only styles (defines its own selectors internally)
+@import "editor";
+
+// Scoped overrides — no @import allowed inside a CSS rule in Dart Sass
 body.acf_content,
 .editor-styles-wrapper {
-  // Override bootstrap variables or define your own variables in _variables.scss
-  @import "variables";
-
-  // Some Bootstrap files loaded for admin. This is because we use many variables and extend classes from Bootstrap.
-  @import "bootstrap/functions";
-  @import "bootstrap/variables";
-  @import "bootstrap/mixins";
-  @import "bootstrap/type";
-  @import "bootstrap/grid";
-  @import "bootstrap/buttons";
-  @import "bootstrap/tables";
-  @import "bootstrap/transitions";
-  @import "bootstrap/dropdown";
-  @import "bootstrap/button-group";
-  @import "bootstrap/card";
-  //@import "bootstrap/breadcrumb";
-  @import "bootstrap/utilities";
-
-  // Basetheme SCSS files. Add additional templates here.
-  @import "mixins";
-
-  // Common styles
-  @import "common";
-
-  // WordPress, Blocks, Widgets, CPTS
-  @import "wordpress";
-  @import "blocks";
-  @import "widgets";
-  @import "blog";
-
-  // Utilities
-  @import "utilities";
-
-  // Editor-only styles
-  @import "editor";
+	font-family: $font-family-sans-serif;
+	font-size: $font-size-base;
+	line-height: $line-height-base;
+	color: $body-color;
 }
 
+// Full-width block alignment reset
 body.gutenberg-editor-page
-  .editor-block-list__layout
-  .editor-block-list__block[data-align="full"],
+	.editor-block-list__layout
+	.editor-block-list__block[data-align="full"],
 body.block-editor-page .editor-block-list__layout .wp-block[data-align="full"] {
-  max-width: none !important;
+	max-width: none !important;
 }
-
-// [class*="kt-adv-heading"] {
-//   .kt-highlight {
-//     -webkit-text-stroke: 2px #00587d;
-//   }
-// }

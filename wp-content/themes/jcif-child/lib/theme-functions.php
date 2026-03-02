@@ -162,20 +162,3 @@ add_filter( 'kadence_blocks_pro_query_loop_query_vars', function( $query, $ql_qu
  }, 10, 3 );
 
 
- add_filter('the_content', 'wphelp_remove_shortcodes_divi');
-function wphelp_remove_shortcodes_divi( $content ) {
-$content = preg_replace('/\[\/?et_pb.*?\]/', '', $content);
-return $content;
-}
-
-
-
-
-comment_form(
-	array(
-		'logged_in_as'       => null,
-		'title_reply'        => esc_html__( 'Subnit a reply', 'atmdst-child' ),
-		'title_reply_before' => '<h2 id="reply-title" class="comment-reply-title">',
-		'title_reply_after'  => '</h2>',
-	)
-);

@@ -12,10 +12,10 @@
 	}
 
 	li {
-		margin-bottom: $grid-gutter-width / 3;
+		margin-bottom: math.div($grid-gutter-width, 3);
 	}
 
 	.widget-title {
-		margin-bottom: $grid-gutter-width / 2;
+		margin-bottom: math.div($grid-gutter-width, 2);
 	}
 }

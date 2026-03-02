@@ -1,0 +1,104 @@
+// =============================================================================
+// Grid — 24-column flexbox grid
+// Provides the same class names as Bootstrap 4 so existing templates don't break.
+// =============================================================================
+
+$_half-gutter: $grid-gutter-width * 0.5;
+
+// Containers
+.container {
+	width: 100%;
+	max-width: 1200px;
+	margin-right: auto;
+	margin-left: auto;
+	padding-right: $_half-gutter;
+	padding-left: $_half-gutter;
+}
+
+.container-fluid {
+	width: 100%;
+	padding-right: $_half-gutter;
+	padding-left: $_half-gutter;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+// Row
+.row {
+	display: flex;
+	flex-wrap: wrap;
+	margin-right: -$_half-gutter;
+	margin-left: -$_half-gutter;
+}
+
+.no-gutters {
+	margin-right: 0;
+	margin-left: 0;
+
+	> [class*='col-'],
+	> .col {
+		padding-right: 0;
+		padding-left: 0;
+	}
+}
+
+// Base column
+@mixin col-base {
+	position: relative;
+	width: 100%;
+	padding-right: $_half-gutter;
+	padding-left: $_half-gutter;
+}
+
+.col {
+	@include col-base;
+	flex: 1 0 0%;
+}
+
+// Fixed-width columns (no breakpoint)
+@for $i from 1 through $grid-columns {
+	.col-#{$i} {
+		@include col-base;
+		flex: 0 0 math.percentage( math.div( $i, $grid-columns ) );
+		max-width: math.percentage( math.div( $i, $grid-columns ) );
+	}
+}
+
+// Offset columns
+@for $i from 0 through $grid-columns - 1 {
+	.offset-#{$i} {
+		@if $i == 0 {
+			margin-left: 0;
+		} @else {
+			margin-left: math.percentage( math.div( $i, $grid-columns ) );
+		}
+	}
+}
+
+// Responsive columns
+@each $bp, $min-width in $breakpoints {
+	@include media-breakpoint-up( $bp ) {
+		.col-#{$bp} {
+			@include col-base;
+			flex: 1 0 0%;
+		}
+
+		@for $i from 1 through $grid-columns {
+			.col-#{$bp}-#{$i} {
+				@include col-base;
+				flex: 0 0 math.percentage( math.div( $i, $grid-columns ) );
+				max-width: math.percentage( math.div( $i, $grid-columns ) );
+			}
+		}
+
+		@for $i from 0 through $grid-columns - 1 {
+			.offset-#{$bp}-#{$i} {
+				@if $i == 0 {
+					margin-left: 0;
+				} @else {
+					margin-left: math.percentage( math.div( $i, $grid-columns ) );
+				}
+			}
+		}
+	}
+}
