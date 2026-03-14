@@ -4,13 +4,13 @@
   Replaces all staging URLs with http://localhost:8080.
 
 .DESCRIPTION
-  Exports the staging database via SSH + WP-CLI and pipes it directly into
-  the local MariaDB container. Then runs WP-CLI search-replace for content URLs.
+  Exports the staging database via SSH + WP-CLI, saves to a temp file,
+  imports into the local MariaDB container, then runs URL search-replace.
+  Uses Windows OpenSSH (built-in) — no WSL or Git Bash required.
 
 .PREREQUISITES
   - Docker containers running: docker compose up -d
-  - Git Bash installed (comes with Git for Windows)
-  - SSH key configured for usjcfoundation host alias
+  - SSH key configured for usjcfoundation host alias in ~/.ssh/config
 
 .EXAMPLE
   .\scripts\Sync-Database.ps1
@@ -25,15 +25,16 @@ param(
     [string]$DbPass        = "usjcf_local"
 )
 
-$repoRoot  = Split-Path $PSScriptRoot -Parent
-$bashPath  = "C:\Program Files\Git\bin\bash.exe"
-$repoPosix = ($repoRoot -replace '\\', '/') -replace '^([A-Za-z]):', '/$1'
+$repoRoot = Split-Path $PSScriptRoot -Parent
+$tmpSql   = [System.IO.Path]::Combine($env:TEMP, "usjcf-sync.sql")
 
-if (-not (Test-Path $bashPath)) {
-    Write-Error "Git Bash not found at $bashPath. Install Git for Windows."
+# Verify ssh is available
+if (-not (Get-Command ssh -ErrorAction SilentlyContinue)) {
+    Write-Error "ssh not found. Enable OpenSSH in Windows Settings > Optional Features."
     exit 1
 }
 
+# Verify Docker containers are running
 Write-Host "Checking Docker containers are running..."
 $wpContainer = & docker compose --project-directory $repoRoot ps -q wordpress 2>$null
 if (-not $wpContainer) {
@@ -41,26 +42,58 @@ if (-not $wpContainer) {
     exit 1
 }
 
-Write-Host "Exporting staging DB and importing into local container..."
-& $bashPath -c @"
-ssh $SshHost '~/bin/wp db export - --path=$StagingWpRoot --add-drop-table' \
-  | docker compose --project-directory '$repoPosix' exec -T db \
-      mysql -u $DbUser -p$DbPass $DbName
-"@
+# Wait for MariaDB to be ready (can take 15-30s after a fresh start)
+Write-Host "Waiting for MariaDB to be ready..."
+$maxWait = 60
+$waited  = 0
+do {
+    & docker compose --project-directory $repoRoot exec -T db mysqladmin ping "-u$DbUser" "-p$DbPass" --silent 2>$null | Out-Null
+    if ($LASTEXITCODE -eq 0) { break }
+    Start-Sleep -Seconds 3
+    $waited += 3
+    Write-Host "  Still waiting... ($waited s)"
+} while ($waited -lt $maxWait)
 
 if ($LASTEXITCODE -ne 0) {
-    Write-Error "Database import failed. Check SSH connection: ssh $SshHost"
+    Write-Error "MariaDB did not become ready after $maxWait seconds."
+    exit 1
+}
+Write-Host "  MariaDB is ready."
+
+# Export DB from staging via SSH
+Write-Host "Exporting staging DB via SSH..."
+$sqlLines = & ssh $SshHost "~/bin/wp db export - --path=$StagingWpRoot --add-drop-table"
+if ($LASTEXITCODE -ne 0 -or -not $sqlLines) {
+    Write-Error "SSH export failed. Test connection with: ssh $SshHost `"echo ok`""
     exit 1
 }
 
-Write-Host "Running URL search-replace..."
-& $bashPath -c "cd '$repoPosix' && docker compose run --rm wpcli wp search-replace '$StagingUrl' '$LocalUrl' --all-tables"
+# Write to temp file (UTF-8 without BOM to avoid MySQL parse errors)
+$utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+[System.IO.File]::WriteAllLines($tmpSql, [string[]]$sqlLines, $utf8NoBom)
+Write-Host "  Saved to: $tmpSql"
 
+# Copy SQL file into the container and import from there (avoids pipe encoding issues)
+Write-Host "Importing into local MariaDB container..."
+$dbContainerId = & docker compose --project-directory $repoRoot ps -q db
+docker cp $tmpSql "${dbContainerId}:/tmp/usjcf-import.sql"
+docker exec $dbContainerId sh -c "mysql -u$DbUser -p${DbPass} $DbName < /tmp/usjcf-import.sql"
+if ($LASTEXITCODE -ne 0) {
+    Write-Error "Database import failed."
+    exit 1
+}
+docker exec $dbContainerId rm /tmp/usjcf-import.sql
+
+# Search-replace staging URL with local URL
+Write-Host "Running URL search-replace..."
+& docker compose --project-directory $repoRoot run --rm wpcli wp search-replace $StagingUrl $LocalUrl --all-tables
 if ($LASTEXITCODE -ne 0) {
     Write-Error "Search-replace failed."
     exit 1
 }
 
+Remove-Item $tmpSql -Force -ErrorAction SilentlyContinue
+
 Write-Host ""
-Write-Host "Done. Visit $LocalUrl to verify."
+Write-Host "Done. Visit $LocalUrl"
 Write-Host "WP admin: $LocalUrl/wp-admin"

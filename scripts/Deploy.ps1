@@ -1,6 +1,7 @@
 <#
 .SYNOPSIS
-  Deploy to staging or production via deploy.sh.
+  Deploy to staging or production.
+  Uses Windows OpenSSH (built-in) — no WSL or Git Bash required.
 
 .EXAMPLE
   .\scripts\Deploy.ps1 staging
@@ -12,13 +13,35 @@ param(
     [string]$Target
 )
 
-$repoRoot  = Split-Path $PSScriptRoot -Parent
-$bashPath  = "C:\Program Files\Git\bin\bash.exe"
-$repoPosix = ($repoRoot -replace '\\', '/') -replace '^([A-Za-z]):', '/$1'
+$stagingPath = "/home/customer/www/staging7.usjcfoundation.com/public_html"
+$prodPath    = "/home/customer/www/usjcfoundation.com/public_html"
+$sshHost     = "usjcfoundation"
 
-if (-not (Test-Path $bashPath)) {
-    Write-Error "Git Bash not found at $bashPath. Install Git for Windows."
-    exit 1
+switch ($Target) {
+    "staging" {
+        $deployPath = $stagingPath
+        $branch     = "staging"
+        $siteUrl    = "https://staging7.usjcfoundation.com"
+    }
+    { $_ -in "production", "prod" } {
+        $deployPath = $prodPath
+        $branch     = "main"
+        $siteUrl    = "https://usjcfoundation.com"
+        Write-Host "WARNING: You are about to deploy to PRODUCTION." -ForegroundColor Red
+        $answer = Read-Host "Type 'yes' to continue"
+        if ($answer -ne "yes") { Write-Host "Aborted."; exit 0 }
+    }
 }
 
-& $bashPath -c "cd '$repoPosix' && bash deploy.sh $Target"
+Write-Host "Deploying branch '$branch' to $siteUrl..." -ForegroundColor Yellow
+
+$remoteCmd = "set -e; cd '$deployPath'; echo 'Pulling latest code...'; git pull origin $branch; echo 'Flushing caches...'; ~/bin/wp cache flush --path=. 2>/dev/null && echo 'Object cache flushed.' || echo 'No object cache.'; ~/bin/wp sg purge --all --path=. 2>/dev/null && echo 'SiteGround cache purged.' || echo 'SG cache not available.'; echo 'Done!'"
+
+& ssh $sshHost $remoteCmd
+
+if ($LASTEXITCODE -eq 0) {
+    Write-Host "Deploy complete -> $siteUrl" -ForegroundColor Green
+} else {
+    Write-Error "Deploy failed."
+    exit 1
+}
