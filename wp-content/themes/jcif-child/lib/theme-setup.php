@@ -25,7 +25,7 @@ if ( ! function_exists( 'gg_enqueue' ) ) {
 		$style_asset = file_exists( "$theme_dir/build/style.asset.php" )
 			? include "$theme_dir/build/style.asset.php"
 			: array( 'version' => '1.0.0' );
-		wp_enqueue_style( 'gg-base-style', "$theme_uri/build/style.css", array(), $style_asset['version'] );
+		wp_enqueue_style( 'gg-base-style', "$theme_uri/build/style-style.css", array(), $style_asset['version'] );
 
 		/**
 		 * Head scripts (e.g. Popper) — loaded before page content.

@@ -6,10 +6,7 @@
 
 /* global jQuery */
 
-// Vendor
-import './js/footer/bootstrap/bootstrap.min.js';
-
 // Custom
-import './js/footer/custom/console.js';
-import './js/footer/custom/header-scrolled.js';
-import './js/footer/custom/scripts.js';
+import "./js/footer/custom/console.js";
+import "./js/footer/custom/header-scrolled.js";
+import "./js/footer/custom/scripts.js";

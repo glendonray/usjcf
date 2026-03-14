@@ -1,14 +1,14 @@
 {
-	"name": "jcif-child",
-	"version": "1.0.0",
-	"description": "JCIF Child Theme",
-	"scripts": {
-		"build": "wp-scripts build",
-		"start": "wp-scripts start",
-		"lint:js": "wp-scripts lint-js",
-		"lint:css": "wp-scripts lint-style"
-	},
-	"devDependencies": {
-		"@wordpress/scripts": "^30.0.0"
-	}
+  "name": "jcif-child",
+  "version": "1.0.0",
+  "description": "JCIF Child Theme",
+  "scripts": {
+    "build": "wp-scripts build",
+    "start": "wp-scripts start",
+    "lint:js": "wp-scripts lint-js",
+    "lint:css": "wp-scripts lint-style"
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "^30.0.0"
+  }
 }
