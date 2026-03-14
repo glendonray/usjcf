@@ -57,6 +57,8 @@ Thumbs.db
 !my_known_hosts
 !backgroundsize.min.htc
 !deploy.sh
+!scripts/
+!docker-compose.yml
 
 # track favicon files, if they exist
 !android-chrome-*.png
