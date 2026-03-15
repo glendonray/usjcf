@@ -61,8 +61,13 @@ if ($LASTEXITCODE -ne 0) {
 Write-Host "  MariaDB is ready."
 
 # Export DB from staging via SSH
+# PowerShell decodes external command output using [Console]::OutputEncoding, which defaults
+# to CP437 on Windows. Force UTF-8 so the SQL dump's Unicode content is preserved correctly.
 Write-Host "Exporting staging DB via SSH..."
+$prevOutputEncoding = [Console]::OutputEncoding
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 $sqlLines = & ssh $SshHost "~/bin/wp db export - --path=$StagingWpRoot --add-drop-table"
+[Console]::OutputEncoding = $prevOutputEncoding
 if ($LASTEXITCODE -ne 0 -or -not $sqlLines) {
     Write-Error "SSH export failed. Test connection with: ssh $SshHost `"echo ok`""
     exit 1
