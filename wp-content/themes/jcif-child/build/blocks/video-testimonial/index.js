@@ -201,7 +201,6 @@ function Edit({
     } else if (video.sizes?.full?.url) {
       thumbnail = video.sizes.full.url;
     } else if (video.media_details?.sizes) {
-      // Try to get the largest available size
       const sizes = video.media_details.sizes;
       if (sizes.large?.source_url) {
         thumbnail = sizes.large.source_url;
@@ -216,23 +215,36 @@ function Edit({
       url: video.url,
       title: video.title || video.filename,
       thumbnail: thumbnail,
-      posterImage: null // Will be set separately
+      posterImage: null
     }];
     setAttributes({
       videos: newVideos
     });
   };
-  const onAddYoutubeVideo = () => {
+  const onAddYoutubeVideo = async () => {
     const videoId = getYouTubeId(youtubeInput.trim());
     if (!videoId) return;
     const embedUrl = `https://www.youtube.com/embed/${videoId}?rel=0`;
     const thumbnail = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+    let title = youtubeInput.trim();
+    try {
+      const oembedUrl = `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`;
+      const response = await fetch(oembedUrl);
+      if (response.ok) {
+        const data = await response.json();
+        if (data.title) {
+          title = data.title;
+        }
+      }
+    } catch (e) {
+      // Fall back to URL if fetch fails
+    }
     const newVideos = [...videos, {
       id: null,
       type: "youtube",
       url: embedUrl,
       youtubeId: videoId,
-      title: youtubeInput.trim(),
+      title: title,
       thumbnail: thumbnail,
       posterImage: null
     }];
@@ -254,6 +266,16 @@ function Edit({
     newVideos[index] = {
       ...newVideos[index],
       posterImage: posterImage
+    };
+    setAttributes({
+      videos: newVideos
+    });
+  };
+  const onUpdateVideoTitle = (index, customTitle) => {
+    const newVideos = [...videos];
+    newVideos[index] = {
+      ...newVideos[index],
+      customTitle: customTitle
     };
     setAttributes({
       videos: newVideos
@@ -393,11 +415,15 @@ function Edit({
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
                       className: "video-info",
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
-                        className: "video-title",
-                        children: video.title
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
                         className: "video-status",
                         children: selectedVideo === index ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Selected", "propagate") : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Click to select", "propagate")
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+                        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Title", "propagate"),
+                        value: video.customTitle ?? "",
+                        onChange: value => onUpdateVideoTitle(index, value),
+                        placeholder: video.title,
+                        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Leave blank to use the file/video title.", "propagate"),
+                        __nextHasNoMarginBottom: true
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
                         className: "video-controls",
                         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, {
@@ -466,30 +492,38 @@ function Edit({
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
           className: "video-testimonial-player",
-          children: videos.length > 0 && videos[selectedVideo] ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
-            className: "video-player-container",
-            children: videos[selectedVideo].type === "youtube" ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("iframe", {
-              src: videos[selectedVideo].url,
-              title: videos[selectedVideo].title,
-              frameBorder: "0",
-              allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
-              allowFullScreen: true,
+          children: videos.length > 0 && videos[selectedVideo] ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.Fragment, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("h3", {
+              className: "video-title-display",
+              children: videos[selectedVideo].customTitle || videos[selectedVideo].title
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+              className: "video-player-container",
               style: {
-                width: "100%",
-                aspectRatio: "16/9"
-              }
-            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("video", {
-              controls: true,
-              poster: videos[selectedVideo].thumbnail,
-              style: {
-                width: "100%",
-                height: "auto"
+                pointerEvents: "none"
               },
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("source", {
+              children: videos[selectedVideo].type === "youtube" ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("iframe", {
                 src: videos[selectedVideo].url,
-                type: "video/mp4"
-              }), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Your browser does not support the video tag.", "propagate")]
-            })
+                title: videos[selectedVideo].customTitle || videos[selectedVideo].title,
+                frameBorder: "0",
+                allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
+                allowFullScreen: true,
+                style: {
+                  width: "100%",
+                  aspectRatio: "16/9"
+                }
+              }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("video", {
+                controls: true,
+                poster: videos[selectedVideo].thumbnail,
+                style: {
+                  width: "100%",
+                  height: "auto"
+                },
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("source", {
+                  src: videos[selectedVideo].url,
+                  type: "video/mp4"
+                }), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Your browser does not support the video tag.", "propagate")]
+              })
+            })]
           }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Placeholder, {
             icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_7__["default"],
             label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Video Player", "propagate"),

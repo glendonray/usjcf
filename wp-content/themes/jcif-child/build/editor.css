@@ -1867,6 +1867,7 @@ blockquote {
 
 body {
   font-size: 0.75rem;
+  background-color: var(--color-white);
 }
 
 @media (min-width: 768px) {
@@ -2487,6 +2488,14 @@ select.kb-filter {
   font-style: normal;
   font-weight: 400;
   line-height: rem-calc(20);
+}
+
+.wp-admin .block-editor .editor-styles-wrapper {
+  background-color: var(--color-white);
+}
+
+.wp-admin .block-editor .editor-styles-wrapper:before {
+  display: none;
 }
 
 /*# sourceMappingURL=editor.css.map*/

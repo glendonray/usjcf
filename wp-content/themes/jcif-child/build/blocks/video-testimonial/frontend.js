@@ -127,12 +127,13 @@ document.addEventListener("DOMContentLoaded", function () {
     if (thumbnailsContainer && videos.length > 0) {
       thumbnailsContainer.innerHTML = "";
       videos.forEach((video, index) => {
+        const displayTitle = video.customTitle || video.title;
         const thumbnailButton = document.createElement("button");
         thumbnailButton.className = `video-thumbnail ${selectedVideo === index ? "selected" : ""}`;
         thumbnailButton.setAttribute("data-video-index", index);
         thumbnailButton.setAttribute("data-video-url", video.url);
-        thumbnailButton.setAttribute("data-video-title", video.title);
-        thumbnailButton.setAttribute("aria-label", `Select video: ${video.title}`);
+        thumbnailButton.setAttribute("data-video-title", displayTitle);
+        thumbnailButton.setAttribute("aria-label", `Select video: ${displayTitle}`);
 
         // Use poster image if available, otherwise fall back to thumbnail
         const displayImage = video.posterImage?.url || video.thumbnail;
@@ -143,7 +144,7 @@ document.addEventListener("DOMContentLoaded", function () {
           // Add a subtle play icon overlay for video thumbnails
           thumbnailButton.innerHTML = `
 						<div class="video-thumbnail-overlay">
-							<svg width="20" height="20" viewBox="0 0 24 24" fill="rgba(255,255,255,0.8)">
+							<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
 								<path d="M8 5v14l11-7z"/>
 							</svg>
 						</div>
@@ -189,16 +190,18 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   function updateVideoPlayer(container, video) {
     if (!container || !video) return;
+    const displayTitle = video.customTitle || video.title;
     if (video.type === "youtube") {
       const displayImage = video.posterImage?.url || video.thumbnail;
       container.innerHTML = `
+                <h3 class="video-title-display">${displayTitle}</h3>
                 <div class="video-player-container video-player-youtube">
                     <div class="video-youtube-poster" style="${displayImage ? `background-image:url(${displayImage});` : ""}background-size:cover;background-position:center;width:100%;aspect-ratio:16/9;">
                         <div class="video-play-overlay">
-                            <button class="video-play-button" aria-label="Play ${video.title}">
+                            <button class="video-play-button" aria-label="Play ${displayTitle}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="66" height="65" viewBox="0 0 66 65" fill="none">
                                     <circle cx="32.9995" cy="32.7778" r="23.5" fill="white"/>
-                                    <path d="M32.9998 0.743896C15.2867 0.743896 0.96582 15.0648 0.96582 32.7778C0.96582 50.4909 15.2867 64.8118 32.9998 64.8118C50.7128 64.8118 65.0337 50.4909 65.0337 32.7778C65.0337 15.0648 50.7128 0.743896 32.9998 0.743896ZM24.0055 46.1315V19.4242C24.0055 17.7648 25.873 16.7946 27.2567 17.6945L47.0454 31.0482C48.2913 31.8779 48.2913 33.6778 47.0454 34.5075L27.2567 47.8611C25.873 48.7611 24.0055 47.7909 24.0055 46.1315Z" fill="#008AD8"/>
+                                    <path d="M32.9998 0.743896C15.2867 0.743896 0.96582 15.0648 0.96582 32.7778C0.96582 50.4909 15.2867 64.8118 32.9998 64.8118C50.7128 64.8118 65.0337 50.4909 65.0337 32.7778C65.0337 15.0648 50.7128 0.743896 32.9998 0.743896ZM24.0055 46.1315V19.4242C24.0055 17.7648 25.873 16.7946 27.2567 17.6945L47.0454 31.0482C48.2913 31.8779 48.2913 33.6778 47.0454 34.5075L27.2567 47.8611C25.873 48.7611 24.0055 47.7909 24.0055 46.1315Z" fill="currentColor"/>
                                 </svg>
                             </button>
                         </div>
@@ -214,7 +217,7 @@ document.addEventListener("DOMContentLoaded", function () {
           posterEl.remove();
           const iframe = document.createElement("iframe");
           iframe.src = autoplayUrl;
-          iframe.title = video.title;
+          iframe.title = displayTitle;
           iframe.frameBorder = "0";
           iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
           iframe.allowFullscreen = true;
@@ -228,18 +231,19 @@ document.addEventListener("DOMContentLoaded", function () {
     // Use poster image if available, otherwise fall back to thumbnail
     const displayImage = video.posterImage?.url || video.thumbnail;
     container.innerHTML = `
+            <h3 class="video-title-display">${displayTitle}</h3>
             <div class="video-player-container">
                 <video
                     class="video-player"
                     preload="metadata"
                     poster="${displayImage || ""}"
-                    aria-label="${video.title}"
+                    aria-label="${displayTitle}"
                 >
                     <source src="${video.url}" type="video/mp4">
                     ${(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Your browser does not support the video tag.", "video-testimonial")}
                 </video>
                 <div class="video-play-overlay">
-                    <button class="video-play-button" aria-label="Play ${video.title}">
+                    <button class="video-play-button" aria-label="Play ${displayTitle}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="66" height="65" viewBox="0 0 66 65" fill="none">
                             <circle cx="32.9995" cy="32.7778" r="23.5" fill="white"/>
                             <path d="M32.9998 0.743896C15.2867 0.743896 0.96582 15.0648 0.96582 32.7778C0.96582 50.4909 15.2867 64.8118 32.9998 64.8118C50.7128 64.8118 65.0337 50.4909 65.0337 32.7778C65.0337 15.0648 50.7128 0.743896 32.9998 0.743896ZM24.0055 46.1315V19.4242C24.0055 17.7648 25.873 16.7946 27.2567 17.6945L47.0454 31.0482C48.2913 31.8779 48.2913 33.6778 47.0454 34.5075L27.2567 47.8611C25.873 48.7611 24.0055 47.7909 24.0055 46.1315Z" fill="#008AD8"/>

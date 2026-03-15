@@ -1,52 +1,52 @@
 {
-	"$schema": "https://schemas.wp.org/trunk/block.json",
-	"apiVersion": 2,
-	"name": "propagate/video-testimonial",
-	"title": "Video Testimonial",
-	"category": "media",
-	"description": "A two-column layout with editable content and video selection buttons.",
-	"icon": "video-alt3",
-	"keywords": ["video", "testimonial", "content", "media"],
-	"textdomain": "video-testimonial",
-	"attributes": {
-		"content": {
-			"type": "string",
-			"default": ""
-		},
-		"videos": {
-			"type": "array",
-			"default": []
-		},
-		"selectedVideo": {
-			"type": "number",
-			"default": 0
-		}
-	},
-	"supports": {
-		"spacing": {
-			"margin": true,
-			"padding": true
-		},
-		"color": {
-			"background": true,
-			"text": true
-		},
-		"border": {
-			"radius": true
-		},
-		"layout": {
-			"allowSwitching": false,
-			"allowInheriting": false,
-			"default": {
-				"type": "constrained"
-			}
-		},
-		"html": false
-	},
-	"providesContext": {
-		"propagate/videoTestimonial": "selectedVideo"
-	},
-	"editorScript": "file:./index.js",
-	"script": "file:./frontend.js",
-	"style": "file:./style-index.css"
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "propagate/video-testimonial",
+  "title": "Video Testimonial",
+  "category": "media",
+  "description": "A two-column layout with editable content and video selection buttons.",
+  "icon": "video-alt3",
+  "keywords": ["video", "testimonial", "content", "media"],
+  "textdomain": "video-testimonial",
+  "attributes": {
+    "content": {
+      "type": "string",
+      "default": ""
+    },
+    "videos": {
+      "type": "array",
+      "default": []
+    },
+    "selectedVideo": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "supports": {
+    "spacing": {
+      "margin": true,
+      "padding": true
+    },
+    "color": {
+      "background": true,
+      "text": true
+    },
+    "border": {
+      "radius": true
+    },
+    "layout": {
+      "allowSwitching": false,
+      "allowInheriting": false,
+      "default": {
+        "type": "constrained"
+      }
+    },
+    "html": false
+  },
+  "providesContext": {
+    "propagate/videoTestimonial": "selectedVideo"
+  },
+  "editorScript": "file:./index.js",
+  "script": "file:./frontend.js",
+  "style": "file:./style-index.css"
 }

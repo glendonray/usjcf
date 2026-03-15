@@ -5,6 +5,8 @@
 
 body {
   font-size: $font-size-sm;
+  background-color: var(--color-white);
+
   @include media-breakpoint-up(md) {
     font-size: $font-size-base;
   }

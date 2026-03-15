@@ -46,4 +46,4 @@ if ( ! function_exists( 'gg_enqueue_block_editor_assets' ) ) {
 }
 
 add_action( 'wp_enqueue_scripts', 'gg_enqueue' );
-add_action( 'enqueue_block_editor_assets', 'gg_enqueue_block_editor_assets' );
+add_action( 'enqueue_block_editor_assets', 'gg_enqueue_block_editor_assets', 1 );

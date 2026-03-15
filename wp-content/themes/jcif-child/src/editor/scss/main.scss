@@ -22,5 +22,13 @@
 @use "../../scss/widgets";
 @use "../../scss/blog";
 
-// Editor-only styles
-@use "../../scss/editor";
+.wp-admin {
+  .block-editor {
+    .editor-styles-wrapper {
+      background-color: var(--color-white);
+      &:before {
+        display: none;
+      }
+    }
+  }
+}
