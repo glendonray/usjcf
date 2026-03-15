@@ -1,39 +1,41 @@
+@use "sass:map";
+
 // Breakpoints — matches Bootstrap 4 values used throughout the theme
 // sm: 576, md: 768, lg: 1024 (custom, was 992 in Bootstrap default), xl: 1200
 $breakpoints: (
-	'sm': 576px,
-	'md': 768px,
-	'lg': 1024px,
-	'xl': 1200px,
+  "sm": 576px,
+  "md": 768px,
+  "lg": 1024px,
+  "xl": 1200px,
 ) !default;
 
 // min-width (mobile-first)
-@mixin media-breakpoint-up( $bp ) {
-	$value: map-get( $breakpoints, $bp );
-	@if $value != null {
-		@media ( min-width: $value ) {
-			@content;
-		}
-	}
+@mixin media-breakpoint-up($bp) {
+  $value: map.get($breakpoints, $bp);
+  @if $value != null {
+    @media (min-width: $value) {
+      @content;
+    }
+  }
 }
 
 // max-width (subtract 0.02px to avoid overlap with min-width breakpoint)
-@mixin media-breakpoint-down( $bp ) {
-	$value: map-get( $breakpoints, $bp );
-	@if $value != null {
-		@media ( max-width: $value - 0.02px ) {
-			@content;
-		}
-	}
+@mixin media-breakpoint-down($bp) {
+  $value: map.get($breakpoints, $bp);
+  @if $value != null {
+    @media (max-width: calc( $value - 0.02px )) {
+      @content;
+    }
+  }
 }
 
 // between two breakpoints
-@mixin media-breakpoint-between( $lower, $upper ) {
-	$min: map-get( $breakpoints, $lower );
-	$max: map-get( $breakpoints, $upper );
-	@if $min != null and $max != null {
-		@media ( min-width: $min ) and ( max-width: $max - 0.02px ) {
-			@content;
-		}
-	}
+@mixin media-breakpoint-between($lower, $upper) {
+  $min: map.get($breakpoints, $lower);
+  $max: map.get($breakpoints, $upper);
+  @if $min != null and $max != null {
+    @media (min-width: $min) and (max-width: calc( $max - 0.02px )) {
+      @content;
+    }
+  }
 }

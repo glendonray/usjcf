@@ -1,3 +1,6 @@
+@use "sass:math";
+@use "shared" as *;
+
 // =============================================================================
 // Grid — 24-column flexbox grid
 // Provides the same class names as Bootstrap 4 so existing templates don't break.

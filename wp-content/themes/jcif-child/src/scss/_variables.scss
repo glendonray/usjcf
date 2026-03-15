@@ -4,18 +4,25 @@
 // =============================================================================
 
 // Grid
-$grid-columns:     24;
+$grid-columns: 24;
 $grid-gutter-width: 30px;
 
 // Fonts
 $font-size-base: 1rem;
-$font-size-sm:   $font-size-base * 0.75;
-$font-size-md:   $font-size-base * 1.25;
-$font-size-lg:   $font-size-base * 2.25;
-$font-size-xl:   $font-size-base * 3;
+$font-size-sm: $font-size-base * 0.75;
+$font-size-md: $font-size-base * 1.25;
+$font-size-lg: $font-size-base * 2.25;
+$font-size-xl: $font-size-base * 3;
 
-$font-family-sans-serif: "Red Hat Display", -apple-system, BlinkMacSystemFont,
-	"Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+$font-family-sans-serif:
+  "Red Hat Display",
+  -apple-system,
+  BlinkMacSystemFont,
+  "Segoe UI",
+  Roboto,
+  "Helvetica Neue",
+  Arial,
+  sans-serif;
 
 $headings-font-family: "Pathway Gothic One", sans-serif;
 $headings-font-weight: 400;
@@ -40,11 +47,11 @@ $h6-font-size-sm: $h6-font-size;
 $paragraph-margin-bottom: 1.5em;
 
 // Colors
-$blue:   #3366cc;
-$navy:   #13293d;
-$sea:    #006494;
-$teal:   #247ba0;
-$white:  #e8f1f2;
+$blue: #3366cc;
+$navy: #13293d;
+$sea: #006494;
+$teal: #247ba0;
+$white: #e8f1f2;
 $orange: #f88639;
 
 // Gray scale
@@ -58,16 +65,16 @@ $gray-700: #495057;
 $gray-800: #343a40;
 $gray-900: #212529;
 
-$primary:   $blue;
+$primary: $blue;
 $secondary: $gray-600;
 $body-color: $gray-900;
-$body-bg:    #fff;
+$body-bg: #fff;
 
 // Buttons
-$btn-padding-y:    0.375rem;
-$btn-padding-x:    0.75rem;
-$btn-font-size:    $font-size-base;
-$btn-font-weight:  400;
+$btn-padding-y: 0.375rem;
+$btn-padding-x: 0.75rem;
+$btn-font-size: $font-size-base;
+$btn-font-weight: 400;
 $btn-border-radius: 0.25rem;
 $btn-border-radius-lg: 0.3rem;
 $btn-border-radius-sm: 0.2rem;
@@ -85,21 +92,21 @@ $font-weight-bold: 700;
 
 // State colors
 $success: #28a745;
-$info:    #17a2b8;
+$info: #17a2b8;
 $warning: #ffc107;
-$danger:  #dc3545;
+$danger: #dc3545;
 
 // Misc
 $speed: 250ms;
-$ease:  ease-in-out;
+$ease: ease-in-out;
 
 // CSS Custom Properties (runtime-overridable)
 :root {
-	--color-primary: #{$blue};
-	--color-navy:    #{$navy};
-	--color-sea:     #{$sea};
-	--color-teal:    #{$teal};
-	--color-white:   #{$white};
-	--color-orange:  #{$orange};
-	--speed:         #{$speed};
+  --color-primary: #{$blue};
+  --color-navy: #{$navy};
+  --color-sea: #{$sea};
+  --color-teal: #{$teal};
+  --color-white: #{$white};
+  --color-orange: #{$orange};
+  --speed: #{$speed};
 }

@@ -4,60 +4,41 @@
 // =============================================================================
 
 // 1. Variables & CSS custom properties (must be first)
-@use "sass:math";
-@import "variables";
+@use "variables";
 
-// 2. Mixins (breakpoints, rem-calc, etc.)
-@import "breakpoints";
-@import "mixins";
+// 2. Mixins (breakpoints, etc.)
+@use "breakpoints";
+@use "mixins";
 
 // 3. Base reset
-@import "reset";
+@use "reset";
 
 // 4. Layout — container, row, col-* (must be before blocks that @extend these)
-@import "grid";
+@use "grid";
 
 // 5. Typography — h1-h6 elements and .h1-.h6 classes, .sr-only
 //    (must be before _wordpress.scss which @extends .sr-only)
-@import "typography";
+@use "typography";
 
 // 6. Components — must be before blocks that @extend these
-@import "buttons";
-@import "nav";
-@import "tables";
-@import "cards";
+@use "buttons";
+@use "nav";
+@use "tables";
+@use "cards";
 
 // 7. Theme-specific styles
-@import "common";
+@use "common";
 
 // 8. Gutenberg editor color/size utility classes
-@import "utilities";
+@use "utilities";
 
 // 9. Forms (Gravity Forms)
-@import "forms";
-
-// 10. WordPress standard classes (extends .sr-only from typography)
-@import "wordpress";
-
-// 11. Blocks (extends .row, .col, .btn, .table etc. — must be after all of the above)
-@import "blocks";
+@use "forms";
 
 // 12. Widgets
-@import "widgets";
+@use "widgets";
 
 // 13. Template parts
-@import "alertmessage";
-@import "site-header";
-@import "site-header-sticky";
-@import "site-footer";
-@import "blog";
-@import "pagination";
-@import "single-missionary";
-@import "single-program";
-
-// 14. Animations
-@import "animations";
-
-// 15. Kadence theme overrides (last, highest specificity)
-@import "./kadence_theme/kadence";
-@import "./kadence_theme/typography";
+@use "site-header";
+@use "site-footer";
+@use "blog";

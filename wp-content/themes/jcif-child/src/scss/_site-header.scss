@@ -1,9 +1,9 @@
+@use "shared" as *;
+
 header.site-header {
   #main-header {
     .site-main-header-wrap {
       .site-main-header-inner-wrap {
-        .site-header-main-section-left {
-        }
         .site-header-main-section-right {
           button,
           .button {

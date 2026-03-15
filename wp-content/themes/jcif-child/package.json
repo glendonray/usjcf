@@ -2,13 +2,14 @@
   "name": "jcif-child",
   "version": "1.0.0",
   "description": "JCIF Child Theme",
+  "prettier": "@wordpress/prettier-config",
   "scripts": {
-    "build": "wp-scripts build",
-    "start": "wp-scripts start",
-    "lint:js": "wp-scripts lint-js",
-    "lint:css": "wp-scripts lint-style"
+    "start": "wp-scripts start --config ./bin/webpack.config.js",
+    "build": "wp-scripts build --mode=production --config ./bin/webpack.config.js"
   },
   "devDependencies": {
-    "@wordpress/scripts": "^30.0.0"
+    "@wordpress/icons": "^10.0.0",
+    "@wordpress/scripts": "^30.11.0",
+    "@wordpress/prettier-config": "^4.18.0"
   }
 }

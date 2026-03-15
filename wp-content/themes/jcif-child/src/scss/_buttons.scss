@@ -1,3 +1,6 @@
+@use "sass:color";
+@use "shared" as *;
+
 // =============================================================================
 // Buttons
 // Provides .btn, .btn-primary, .btn-outline-primary, .btn-link, .btn-lg, .btn-sm
@@ -44,8 +47,8 @@
 
 	&:hover {
 		color: #fff;
-		background-color: darken( $blue, 10% );
-		border-color: darken( $blue, 12% );
+		background-color: color.adjust( $blue, $lightness: -10% );
+		border-color: color.adjust( $blue, $lightness: -12% );
 	}
 }
 
@@ -70,8 +73,8 @@
 
 	&:hover {
 		color: #fff;
-		background-color: darken( $navy, 8% );
-		border-color: darken( $navy, 10% );
+		background-color: color.adjust( $navy, $lightness: -8% );
+		border-color: color.adjust( $navy, $lightness: -10% );
 	}
 }
 
@@ -83,8 +86,8 @@
 
 	&:hover {
 		color: #fff;
-		background-color: darken( $sea, 8% );
-		border-color: darken( $sea, 10% );
+		background-color: color.adjust( $sea, $lightness: -8% );
+		border-color: color.adjust( $sea, $lightness: -10% );
 	}
 }
 
@@ -96,8 +99,8 @@
 
 	&:hover {
 		color: #fff;
-		background-color: darken( $orange, 8% );
-		border-color: darken( $orange, 10% );
+		background-color: color.adjust( $orange, $lightness: -8% );
+		border-color: color.adjust( $orange, $lightness: -10% );
 	}
 }
 
@@ -111,7 +114,7 @@
 	padding-right: 0;
 
 	&:hover {
-		color: darken( $blue, 15% );
+		color: color.adjust( $blue, $lightness: -15% );
 	}
 }
 

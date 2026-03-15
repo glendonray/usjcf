@@ -1,0 +1,26 @@
+// =============================================================================
+// Block editor stylesheet
+// =============================================================================
+
+// Variables needed for direct use in this file
+@use "../../scss/variables" as *;
+
+// Base partials
+@use "../../scss/breakpoints";
+@use "../../scss/mixins";
+@use "../../scss/reset";
+@use "../../scss/grid";
+@use "../../scss/typography";
+@use "../../scss/buttons";
+@use "../../scss/tables";
+@use "../../scss/cards";
+
+// These apply globally within the editor iframe
+@use "../../scss/common";
+@use "../../scss/utilities";
+@use "../../scss/forms";
+@use "../../scss/widgets";
+@use "../../scss/blog";
+
+// Editor-only styles
+@use "../../scss/editor";

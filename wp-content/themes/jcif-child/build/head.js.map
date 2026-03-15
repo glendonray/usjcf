@@ -1,1 +1,0 @@
-{"version":3,"file":"head.js","mappings":";;;;AAAA;AACA;AACA;AACA,G","sources":["webpack://jcif-child/./src/head.js"],"sourcesContent":["/**\n * Head scripts — loaded in <head> before page content.\n * These are concatenated and output to dist/head.js\n */\n"],"names":[],"sourceRoot":""}

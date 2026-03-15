@@ -1,3 +1,5 @@
+@use "shared" as *;
+
 // .form,
 // .gform_wrapper.gravity-theme [id*="gform"] {
 //   input {
@@ -57,7 +59,7 @@
     height: auto;
     color: $navy;
     &::placeholder {
-      color: transparentize($color: $navy, $amount: 0.5);
+      color: rgba($navy, 0.5);
       font-size: 1rem;
     }
     &:focus {

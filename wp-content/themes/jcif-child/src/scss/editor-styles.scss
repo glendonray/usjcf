@@ -1,47 +1,26 @@
 // =============================================================================
 // Block editor stylesheet
-// All @import rules MUST be at the top level — Dart Sass does not support
-// @import inside a CSS rule (nested @import is a LibSass-only feature).
 // =============================================================================
 
-@use "sass:math";
+// Variables needed for direct use in this file
+@use "variables" as *;
 
-// Base partials (import at top level, then scope styles below)
-@import "variables";
-@import "breakpoints";
-@import "mixins";
-@import "reset";
-@import "grid";
-@import "typography";
-@import "buttons";
-@import "tables";
-@import "cards";
+// Base partials
+@use "breakpoints";
+@use "mixins";
+@use "reset";
+@use "grid";
+@use "typography";
+@use "buttons";
+@use "tables";
+@use "cards";
 
-// These apply globally within the editor iframe — no @import inside selectors
-@import "common";
-@import "utilities";
-@import "forms";
-@import "wordpress";
-@import "blocks";
-@import "widgets";
-@import "blog";
+// These apply globally within the editor iframe
+@use "common";
+@use "utilities";
+@use "forms";
+@use "widgets";
+@use "blog";
 
-// Editor-only styles (defines its own selectors internally)
-@import "editor";
-
-// Scoped overrides — no @import allowed inside a CSS rule in Dart Sass
-body.acf_content,
-.editor-styles-wrapper {
-	font-family: $font-family-sans-serif;
-	font-size: $font-size-base;
-	line-height: $line-height-base;
-	color: $body-color;
-}
-
-// Full-width block alignment reset
-body.gutenberg-editor-page
-	.editor-block-list__layout
-	.editor-block-list__block[data-align="full"],
-body.block-editor-page .editor-block-list__layout .wp-block[data-align="full"] {
-	max-width: none !important;
-}
+// Editor-only styles
+@use "editor";

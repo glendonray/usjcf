@@ -1,3 +1,5 @@
+@use "shared" as *;
+
 .blog-cat-list {
     li {
         a {
@@ -20,27 +22,12 @@
         }
     }
 }
-.single-blog-sidebar {
-    .blog-cat-list {
-        font-size: rem-calc(18);
-        text-decoration: none;
-        text-transform: none;
-        margin: 0 0 20px;
-        padding: 0;
-        list-style-type: none;
-        li {
-            line-height: 1.8;
-            a {
-                text-decoration: none;
-            }
-        }
-    }
-}
+
 .blog {
     .content-area {
         margin-top: 2.5rem;
     }
-    .pagination { 
+    .pagination {
         .nav-links {
             display: flex;
         }
@@ -108,7 +95,7 @@
             font-size: rem-calc(18);
             font-style: normal;
             font-weight: 700;
-            line-height: rem-calc(20); 
+            line-height: rem-calc(20);
         }
     }
     .wp-block-post-author__bio {

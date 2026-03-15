@@ -1,0 +1,5 @@
+// Shared module — forwards variables, breakpoints, and mixins.
+// @use "shared" as * in any partial that needs $vars or @include.
+@forward "variables";
+@forward "breakpoints";
+@forward "mixins";

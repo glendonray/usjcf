@@ -1,15 +1,13 @@
+@use "sass:math";
+@use "shared" as *;
+@use "grid";
+@use "buttons";
+
 body {
   font-size: $font-size-sm;
   @include media-breakpoint-up(md) {
     font-size: $font-size-base;
   }
-}
-
-a.skipnav {
-  font-size: rem-calc(11);
-  display: block;
-  padding: 5px 20px;
-  color: $gray-600;
 }
 
 .container-wide {
@@ -50,41 +48,6 @@ b {
 em,
 i {
   @include font-italic();
-}
-
-blockquote {
-  margin-bottom: 0;
-  padding-top: 10px;
-  padding-left: 34px;
-  position: relative;
-
-  @include media-breakpoint-up(lg) {
-    padding-right: 80px;
-    padding-left: 80px;
-  }
-
-  > *:last-child {
-    margin-bottom: 0;
-  }
-
-  &:before {
-    display: inline-block;
-    position: absolute;
-    font-size: rem-calc(75);
-    line-height: 1;
-    content: "\201C";
-    left: 0;
-    top: -0.15em;
-
-    @include media-breakpoint-up(lg) {
-      left: 0;
-      font-size: rem-calc(155);
-    }
-  }
-
-  cite {
-    font-style: italic;
-  }
 }
 
 /*
@@ -203,7 +166,7 @@ a.btn-link {
   padding: 3px !important;
 }
 
-/* 
+/*
 	  Search Form
   */
 .search-form {
@@ -260,10 +223,4 @@ figure {
     margin-left: auto !important;
     margin-right: auto !important;
   }
-}
-
-/* Overriding Bootstrap styles that add padding to Kadence Advanced Highlight */
-mark,
-.mark {
-  padding: 0;
 }

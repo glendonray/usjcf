@@ -9,16 +9,21 @@ function child_enqueue_styles() {
 add_action( 'wp_enqueue_scripts', 'child_enqueue_styles' );
 
 /**
+ * Reusable Blocks accessible in backend
+ *
+ * @link https://www.billerickson.net/reusable-blocks-accessible-in-wordpress-admin-area
+ */
+function gg_reusable_blocks_admin_menu() {
+	add_menu_page( 'Patterns', 'Patterns', 'edit_posts', 'edit.php?post_type=wp_block', '', 'dashicons-editor-table', 22 );
+}
+add_action( 'admin_menu', 'gg_reusable_blocks_admin_menu' );
+
+/**
  * Include theme files.
  * Functions and hooks should go in these files, not in functions.php.
  */
 
-/* Setup menus, sidebars, scripts, etc. */
-require get_theme_file_path() . '/lib/theme-setup.php';
-
-/* Misc hooks and functions more specific to this site */
-require get_theme_file_path() . '/lib/theme-functions.php';
-
-/* Register theme ACF blocks */
-require get_theme_file_path() . '/lib/theme-acfblocks.php';
-
+ // Loop through inc files
+foreach ( glob( get_theme_file_path() . '/inc/*.php' ) as $file ) {
+	require $file;
+}
