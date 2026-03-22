@@ -20,6 +20,10 @@
     "selectedVideo": {
       "type": "number",
       "default": 0
+    },
+    "videoLayout": {
+      "type": "string",
+      "default": "grid"
     }
   },
   "supports": {

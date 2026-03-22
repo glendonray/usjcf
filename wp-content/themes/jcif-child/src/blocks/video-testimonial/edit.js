@@ -16,10 +16,17 @@ import {
 	FlexItem,
 	FlexBlock,
 	TextControl,
-	ButtonGroup,
+	SelectControl,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { video as videoIcon, plus, trash, dragHandle } from '@wordpress/icons';
+import {
+	video as videoIcon,
+	plus,
+	trash,
+	dragHandle,
+	chevronDown,
+	chevronUp,
+} from '@wordpress/icons';
 
 const TEMPLATE = [
 	[ 'core/heading', { level: 2, placeholder: 'Enter heading...' } ],
@@ -34,13 +41,15 @@ function getYouTubeId( url ) {
 }
 
 export default function Edit( { attributes, setAttributes } ) {
-	const { videos, selectedVideo } = attributes;
+	const { videos, selectedVideo, videoLayout } = attributes;
 	const [ youtubeInput, setYoutubeInput ] = useState( '' );
 	const [ showYoutubeInput, setShowYoutubeInput ] = useState( false );
+	const [ expandedVideoIndex, setExpandedVideoIndex ] = useState( null );
 	const blockProps = useBlockProps( {
 		className: 'video-testimonial-block',
 		'data-videos': JSON.stringify( videos ),
 		'data-selected-video': selectedVideo,
+		'data-video-layout': videoLayout,
 	} );
 
 	const onSelectVideo = ( video, index ) => {
@@ -77,6 +86,9 @@ export default function Edit( { attributes, setAttributes } ) {
 				title: video.title || video.filename,
 				thumbnail: thumbnail,
 				posterImage: null,
+				customTitle: null,
+				videoTitle: null,
+				videoSubtitle: null,
 			},
 		];
 		setAttributes( { videos: newVideos } );
@@ -113,6 +125,9 @@ export default function Edit( { attributes, setAttributes } ) {
 				title: title,
 				thumbnail: thumbnail,
 				posterImage: null,
+				customTitle: null,
+				videoTitle: null,
+				videoSubtitle: null,
 			},
 		];
 		setAttributes( { videos: newVideos } );
@@ -122,6 +137,11 @@ export default function Edit( { attributes, setAttributes } ) {
 
 	const onRemoveVideo = ( index ) => {
 		const newVideos = videos.filter( ( _, i ) => i !== index );
+		if ( expandedVideoIndex === index ) {
+			setExpandedVideoIndex( null );
+		} else if ( expandedVideoIndex > index ) {
+			setExpandedVideoIndex( expandedVideoIndex - 1 );
+		}
 		setAttributes( {
 			videos: newVideos,
 			selectedVideo:
@@ -131,20 +151,11 @@ export default function Edit( { attributes, setAttributes } ) {
 		} );
 	};
 
-	const onUpdateVideoPoster = ( index, posterImage ) => {
+	const onUpdateVideoField = ( index, field, value ) => {
 		const newVideos = [ ...videos ];
 		newVideos[ index ] = {
 			...newVideos[ index ],
-			posterImage: posterImage,
-		};
-		setAttributes( { videos: newVideos } );
-	};
-
-	const onUpdateVideoTitle = ( index, customTitle ) => {
-		const newVideos = [ ...videos ];
-		newVideos[ index ] = {
-			...newVideos[ index ],
-			customTitle: customTitle,
+			[ field ]: value,
 		};
 		setAttributes( { videos: newVideos } );
 	};
@@ -154,12 +165,59 @@ export default function Edit( { attributes, setAttributes } ) {
 		const draggedVideo = newVideos[ dragIndex ];
 		newVideos.splice( dragIndex, 1 );
 		newVideos.splice( dropIndex, 0, draggedVideo );
+
+		// Update expanded index to follow the dragged card
+		let newExpanded = expandedVideoIndex;
+		if ( expandedVideoIndex === dragIndex ) {
+			newExpanded = dropIndex;
+		} else if ( expandedVideoIndex !== null ) {
+			if (
+				dragIndex < expandedVideoIndex &&
+				dropIndex >= expandedVideoIndex
+			) {
+				newExpanded = expandedVideoIndex - 1;
+			} else if (
+				dragIndex > expandedVideoIndex &&
+				dropIndex <= expandedVideoIndex
+			) {
+				newExpanded = expandedVideoIndex + 1;
+			}
+		}
+		setExpandedVideoIndex( newExpanded );
 		setAttributes( { videos: newVideos } );
 	};
+
+	const isExpanded = ( index ) => expandedVideoIndex === index;
 
 	return (
 		<>
 			<InspectorControls>
+				<PanelBody
+					title={ __( 'Layout Options', 'propagate' ) }
+					initialOpen={ true }
+				>
+					<SelectControl
+						label={ __(
+							'Video Selection Layout',
+							'propagate'
+						) }
+						value={ videoLayout }
+						options={ [
+							{
+								label: __( 'Default (Grid)', 'propagate' ),
+								value: 'grid',
+							},
+							{
+								label: __( 'List', 'propagate' ),
+								value: 'list',
+							},
+						] }
+						onChange={ ( value ) =>
+							setAttributes( { videoLayout: value } )
+						}
+						__nextHasNoMarginBottom
+					/>
+				</PanelBody>
 				<PanelBody
 					title={ __( 'Video Selection', 'propagate' ) }
 					initialOpen={ true }
@@ -248,12 +306,16 @@ export default function Edit( { attributes, setAttributes } ) {
 
 					{ videos.length > 0 && (
 						<div style={ { marginTop: '16px' } }>
-							<h4>{ __( 'Video Thumbnails', 'propagate' ) }</h4>
+							<h4>{ __( 'Videos', 'propagate' ) }</h4>
 							<div>
 								{ videos.map( ( video, index ) => (
 									<Card
 										key={ video.id ?? video.url }
-										className="video-testimonial-video-card"
+										className={ `video-testimonial-video-card ${
+											isExpanded( index )
+												? 'is-expanded'
+												: ''
+										}` }
 										style={ { marginBottom: '8px' } }
 										draggable
 										onDragStart={ ( e ) => {
@@ -285,7 +347,8 @@ export default function Edit( { attributes, setAttributes } ) {
 										} }
 									>
 										<CardBody>
-											<Flex>
+											{ /* Collapsed row — always visible */ }
+											<Flex align="center">
 												<FlexItem>
 													<Button
 														variant="tertiary"
@@ -317,8 +380,8 @@ export default function Edit( { attributes, setAttributes } ) {
 															)
 														}
 														style={ {
-															width: '60px',
-															height: '60px',
+															width: '48px',
+															height: '48px',
 															padding: '0',
 															backgroundImage:
 																video
@@ -337,6 +400,18 @@ export default function Edit( { attributes, setAttributes } ) {
 															backgroundPosition:
 																'center',
 														} }
+														aria-label={
+															selectedVideo ===
+															index
+																? __(
+																		'Selected',
+																		'propagate'
+																  )
+																: __(
+																		'Click to select',
+																		'propagate'
+																  )
+														}
 													>
 														{ ! (
 															video.posterImage
@@ -346,107 +421,54 @@ export default function Edit( { attributes, setAttributes } ) {
 													</Button>
 												</FlexItem>
 												<FlexBlock>
-													<div className="video-info">
-														<div className="video-status">
-															{ selectedVideo ===
-															index
+													<div className="video-card-summary">
+														<div className="video-card-title">
+															{ video.videoTitle ||
+																video.title }
+														</div>
+														{ video.videoSubtitle && (
+															<div className="video-card-subtitle">
+																{
+																	video.videoSubtitle
+																}
+															</div>
+														) }
+													</div>
+												</FlexBlock>
+												<FlexItem>
+													<Button
+														icon={
+															isExpanded( index )
+																? chevronUp
+																: chevronDown
+														}
+														onClick={ () =>
+															setExpandedVideoIndex(
+																isExpanded(
+																	index
+																)
+																	? null
+																	: index
+															)
+														}
+														aria-label={
+															isExpanded( index )
 																? __(
-																		'Selected',
+																		'Collapse',
 																		'propagate'
 																  )
 																: __(
-																		'Click to select',
+																		'Expand',
 																		'propagate'
-																  ) }
-														</div>
-														<TextControl
-															label={ __(
-																'Title',
-																'propagate'
-															) }
-															value={
-																video.customTitle ??
-																''
-															}
-															onChange={ (
-																value
-															) =>
-																onUpdateVideoTitle(
-																	index,
-																	value
-																)
-															}
-															placeholder={
-																video.title
-															}
-															help={ __(
-																'Leave blank to use the file/video title.',
-																'propagate'
-															) }
-															__nextHasNoMarginBottom
-														/>
-														<div className="video-controls">
-															<MediaUploadCheck>
-																<MediaUpload
-																	onSelect={ (
-																		image
-																	) =>
-																		onUpdateVideoPoster(
-																			index,
-																			image
-																		)
-																	}
-																	allowedTypes={ [
-																		'image',
-																	] }
-																	value={
-																		video
-																			.posterImage
-																			?.id
-																	}
-																	render={ ( {
-																		open,
-																	} ) => (
-																		<Button
-																			variant="secondary"
-																			size="small"
-																			onClick={
-																				open
-																			}
-																		>
-																			{ video.posterImage
-																				? __(
-																						'Change Poster',
-																						'propagate'
-																				  )
-																				: __(
-																						'Add Poster',
-																						'propagate'
-																				  ) }
-																		</Button>
-																	) }
-																/>
-															</MediaUploadCheck>
-															{ video.posterImage && (
-																<Button
-																	variant="tertiary"
-																	size="small"
-																	onClick={ () =>
-																		onUpdateVideoPoster(
-																			index,
-																			null
-																		)
-																	}
-																>
-																	{ __(
-																		'Remove',
-																		'propagate'
-																	) }
-																</Button>
-															) }
-														</div>
-													</div>
-												</FlexBlock>
+																  )
+														}
+														style={ {
+															padding: '4px',
+															minWidth: 'auto',
+															height: 'auto',
+														} }
+													/>
+												</FlexItem>
 												<FlexItem>
 													<Button
 														variant="tertiary"
@@ -457,9 +479,157 @@ export default function Edit( { attributes, setAttributes } ) {
 															)
 														}
 														isDestructive
+														style={ {
+															padding: '4px',
+															minWidth: 'auto',
+															height: 'auto',
+														} }
 													/>
 												</FlexItem>
 											</Flex>
+
+											{ /* Expanded fields */ }
+											{ isExpanded( index ) && (
+												<div className="video-card-expanded">
+													<TextControl
+														label={ __(
+															'Title',
+															'propagate'
+														) }
+														value={
+															video.videoTitle ??
+															''
+														}
+														onChange={ (
+															value
+														) =>
+															onUpdateVideoField(
+																index,
+																'videoTitle',
+																value
+															)
+														}
+														placeholder={ __(
+															'Video title',
+															'propagate'
+														) }
+														__nextHasNoMarginBottom
+													/>
+													<TextControl
+														label={ __(
+															'Subtitle',
+															'propagate'
+														) }
+														value={
+															video.videoSubtitle ??
+															''
+														}
+														onChange={ (
+															value
+														) =>
+															onUpdateVideoField(
+																index,
+																'videoSubtitle',
+																value
+															)
+														}
+														placeholder={ __(
+															'Optional subtitle',
+															'propagate'
+														) }
+														__nextHasNoMarginBottom
+													/>
+													<TextControl
+														label={ __(
+															'Player Title',
+															'propagate'
+														) }
+														value={
+															video.customTitle ??
+															''
+														}
+														onChange={ (
+															value
+														) =>
+															onUpdateVideoField(
+																index,
+																'customTitle',
+																value
+															)
+														}
+														placeholder={
+															video.title
+														}
+														help={ __(
+															'Displayed above the video player. Defaults to the media/YouTube title.',
+															'propagate'
+														) }
+														__nextHasNoMarginBottom
+													/>
+													<div className="video-controls">
+														<MediaUploadCheck>
+															<MediaUpload
+																onSelect={ (
+																	image
+																) =>
+																	onUpdateVideoField(
+																		index,
+																		'posterImage',
+																		image
+																	)
+																}
+																allowedTypes={ [
+																	'image',
+																] }
+																value={
+																	video
+																		.posterImage
+																		?.id
+																}
+																render={ ( {
+																	open,
+																} ) => (
+																	<Button
+																		variant="secondary"
+																		size="small"
+																		onClick={
+																			open
+																		}
+																	>
+																		{ video.posterImage
+																			? __(
+																					'Change Poster',
+																					'propagate'
+																			  )
+																			: __(
+																					'Add Poster',
+																					'propagate'
+																			  ) }
+																	</Button>
+																) }
+															/>
+														</MediaUploadCheck>
+														{ video.posterImage && (
+															<Button
+																variant="tertiary"
+																size="small"
+																onClick={ () =>
+																	onUpdateVideoField(
+																		index,
+																		'posterImage',
+																		null
+																	)
+																}
+															>
+																{ __(
+																	'Remove',
+																	'propagate'
+																) }
+															</Button>
+														) }
+													</div>
+												</div>
+											) }
 										</CardBody>
 									</Card>
 								) ) }
@@ -480,8 +650,10 @@ export default function Edit( { attributes, setAttributes } ) {
 							/>
 						</div>
 
-						{ /* Video Thumbnail Buttons */ }
-						<div className="video-testimonial-thumbnails">
+						{ /* Video Thumbnails — shared grid container */ }
+						<div
+							className={ `video-testimonial-thumbnails layout-${ videoLayout }` }
+						>
 							{ videos.length > 0 ? (
 								videos.map( ( video, index ) => (
 									<button
@@ -496,8 +668,9 @@ export default function Edit( { attributes, setAttributes } ) {
 										}
 										style={ {
 											backgroundImage:
-												video.posterImage?.url ||
-												video.thumbnail
+												videoLayout === 'grid' &&
+												( video.posterImage?.url ||
+													video.thumbnail )
 													? `url(${
 															video.posterImage
 																?.url ||
@@ -506,10 +679,44 @@ export default function Edit( { attributes, setAttributes } ) {
 													: 'none',
 										} }
 									>
-										{ ! (
-											video.posterImage?.url ||
-											video.thumbnail
-										) && <videoIcon /> }
+										{ videoLayout === 'list' && (
+											<>
+												<span
+													className="video-list-thumb"
+													style={ {
+														backgroundImage:
+															video.posterImage
+																?.url ||
+															video.thumbnail
+																? `url(${
+																		video
+																			.posterImage
+																			?.url ||
+																		video.thumbnail
+																  })`
+																: 'none',
+													} }
+												/>
+												<span className="video-list-info">
+													<span className="video-list-title">
+														{ video.videoTitle ||
+															video.title }
+													</span>
+													{ video.videoSubtitle && (
+														<span className="video-list-subtitle">
+															{
+																video.videoSubtitle
+															}
+														</span>
+													) }
+												</span>
+											</>
+										) }
+										{ videoLayout === 'grid' &&
+											! (
+												video.posterImage?.url ||
+												video.thumbnail
+											) && <videoIcon /> }
 									</button>
 								) )
 							) : (

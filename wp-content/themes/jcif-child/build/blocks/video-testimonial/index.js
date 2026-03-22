@@ -2,6 +2,68 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./node_modules/@wordpress/icons/build-module/library/chevron-down.js"
+/*!****************************************************************************!*\
+  !*** ./node_modules/@wordpress/icons/build-module/library/chevron-down.js ***!
+  \****************************************************************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/primitives */ "@wordpress/primitives");
+/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__);
+/**
+ * WordPress dependencies
+ */
+
+
+const chevronDown = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_0__.SVG, {
+  viewBox: "0 0 24 24",
+  xmlns: "http://www.w3.org/2000/svg",
+  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_0__.Path, {
+    d: "M17.5 11.6L12 16l-5.5-4.4.9-1.2L12 14l4.5-3.6 1 1.2z"
+  })
+});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (chevronDown);
+//# sourceMappingURL=chevron-down.js.map
+
+/***/ },
+
+/***/ "./node_modules/@wordpress/icons/build-module/library/chevron-up.js"
+/*!**************************************************************************!*\
+  !*** ./node_modules/@wordpress/icons/build-module/library/chevron-up.js ***!
+  \**************************************************************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/primitives */ "@wordpress/primitives");
+/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__);
+/**
+ * WordPress dependencies
+ */
+
+
+const chevronUp = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_0__.SVG, {
+  viewBox: "0 0 24 24",
+  xmlns: "http://www.w3.org/2000/svg",
+  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_0__.Path, {
+    d: "M6.5 12.4L12 8l5.5 4.4-.9 1.2L12 10l-4.5 3.6-1-1.2z"
+  })
+});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (chevronUp);
+//# sourceMappingURL=chevron-up.js.map
+
+/***/ },
+
 /***/ "./node_modules/@wordpress/icons/build-module/library/drag-handle.js"
 /*!***************************************************************************!*\
   !*** ./node_modules/@wordpress/icons/build-module/library/drag-handle.js ***!
@@ -146,12 +208,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/drag-handle.js");
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/plus.js");
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/trash.js");
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/video.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/chevron-down.js");
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/chevron-up.js");
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/drag-handle.js");
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/plus.js");
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/trash.js");
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/video.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__);
 
 
 
@@ -174,14 +238,17 @@ function Edit({
 }) {
   const {
     videos,
-    selectedVideo
+    selectedVideo,
+    videoLayout
   } = attributes;
   const [youtubeInput, setYoutubeInput] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)('');
   const [showYoutubeInput, setShowYoutubeInput] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const [expandedVideoIndex, setExpandedVideoIndex] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
     className: 'video-testimonial-block',
     'data-videos': JSON.stringify(videos),
-    'data-selected-video': selectedVideo
+    'data-selected-video': selectedVideo,
+    'data-video-layout': videoLayout
   });
   const onSelectVideo = (video, index) => {
     setAttributes({
@@ -214,7 +281,10 @@ function Edit({
       url: video.url,
       title: video.title || video.filename,
       thumbnail: thumbnail,
-      posterImage: null
+      posterImage: null,
+      customTitle: null,
+      videoTitle: null,
+      videoSubtitle: null
     }];
     setAttributes({
       videos: newVideos
@@ -245,7 +315,10 @@ function Edit({
       youtubeId: videoId,
       title: title,
       thumbnail: thumbnail,
-      posterImage: null
+      posterImage: null,
+      customTitle: null,
+      videoTitle: null,
+      videoSubtitle: null
     }];
     setAttributes({
       videos: newVideos
@@ -255,26 +328,21 @@ function Edit({
   };
   const onRemoveVideo = index => {
     const newVideos = videos.filter((_, i) => i !== index);
+    if (expandedVideoIndex === index) {
+      setExpandedVideoIndex(null);
+    } else if (expandedVideoIndex > index) {
+      setExpandedVideoIndex(expandedVideoIndex - 1);
+    }
     setAttributes({
       videos: newVideos,
       selectedVideo: selectedVideo >= newVideos.length ? Math.max(0, newVideos.length - 1) : selectedVideo
     });
   };
-  const onUpdateVideoPoster = (index, posterImage) => {
+  const onUpdateVideoField = (index, field, value) => {
     const newVideos = [...videos];
     newVideos[index] = {
       ...newVideos[index],
-      posterImage: posterImage
-    };
-    setAttributes({
-      videos: newVideos
-    });
-  };
-  const onUpdateVideoTitle = (index, customTitle) => {
-    const newVideos = [...videos];
-    newVideos[index] = {
-      ...newVideos[index],
-      customTitle: customTitle
+      [field]: value
     };
     setAttributes({
       videos: newVideos
@@ -285,65 +353,97 @@ function Edit({
     const draggedVideo = newVideos[dragIndex];
     newVideos.splice(dragIndex, 1);
     newVideos.splice(dropIndex, 0, draggedVideo);
+
+    // Update expanded index to follow the dragged card
+    let newExpanded = expandedVideoIndex;
+    if (expandedVideoIndex === dragIndex) {
+      newExpanded = dropIndex;
+    } else if (expandedVideoIndex !== null) {
+      if (dragIndex < expandedVideoIndex && dropIndex >= expandedVideoIndex) {
+        newExpanded = expandedVideoIndex - 1;
+      } else if (dragIndex > expandedVideoIndex && dropIndex <= expandedVideoIndex) {
+        newExpanded = expandedVideoIndex + 1;
+      }
+    }
+    setExpandedVideoIndex(newExpanded);
     setAttributes({
       videos: newVideos
     });
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+  const isExpanded = index => expandedVideoIndex === index;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Layout Options', 'propagate'),
+        initialOpen: true,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Video Selection Layout', 'propagate'),
+          value: videoLayout,
+          options: [{
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Default (Grid)', 'propagate'),
+            value: 'grid'
+          }, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('List', 'propagate'),
+            value: 'list'
+          }],
+          onChange: value => setAttributes({
+            videoLayout: value
+          }),
+          __nextHasNoMarginBottom: true
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Video Selection', 'propagate'),
         initialOpen: true,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Flex, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Flex, {
           gap: 2,
           style: {
             marginBottom: '8px'
           },
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.FlexItem, {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, {
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.FlexItem, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
                 onSelect: onAddVideo,
                 allowedTypes: ['video'],
                 value: videos.filter(v => v.id).map(v => v.id),
                 render: ({
                   open
-                }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+                }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
                   variant: "primary",
-                  icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_5__["default"],
+                  icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_7__["default"],
                   onClick: open,
                   children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Media Library', 'propagate')
                 })
               })
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.FlexItem, {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.FlexItem, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
               variant: "secondary",
-              icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_5__["default"],
+              icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_7__["default"],
               onClick: () => setShowYoutubeInput(prev => !prev),
               children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('YouTube', 'propagate')
             })
           })]
-        }), showYoutubeInput && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+        }), showYoutubeInput && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
           style: {
             marginBottom: '8px'
           },
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
             label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('YouTube URL', 'propagate'),
             value: youtubeInput,
             onChange: setYoutubeInput,
             placeholder: "https://www.youtube.com/watch?v=...",
             help: youtubeInput.trim() !== '' && getYouTubeId(youtubeInput.trim()) === null ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Please enter a valid YouTube URL.', 'propagate') : ''
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Flex, {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Flex, {
             gap: 2,
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.FlexItem, {
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.FlexItem, {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
                 variant: "primary",
                 onClick: onAddYoutubeVideo,
                 disabled: !getYouTubeId(youtubeInput.trim()),
                 children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Add', 'propagate')
               })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.FlexItem, {
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.FlexItem, {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
                 variant: "tertiary",
                 onClick: () => {
                   setShowYoutubeInput(false);
@@ -353,15 +453,15 @@ function Edit({
               })
             })]
           })]
-        }), videos.length > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+        }), videos.length > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
           style: {
             marginTop: '16px'
           },
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("h4", {
-            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Video Thumbnails', 'propagate')
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
-            children: videos.map((video, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Card, {
-              className: "video-testimonial-video-card",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("h4", {
+            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Videos', 'propagate')
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+            children: videos.map((video, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Card, {
+              className: `video-testimonial-video-card ${isExpanded(index) ? 'is-expanded' : ''}`,
               style: {
                 marginBottom: '8px'
               },
@@ -382,12 +482,13 @@ function Edit({
                   onReorderVideos(dragIndex, dropIndex);
                 }
               },
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.CardBody, {
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Flex, {
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.FlexItem, {
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.CardBody, {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Flex, {
+                  align: "center",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.FlexItem, {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
                       variant: "tertiary",
-                      icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_4__["default"],
+                      icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_6__["default"],
                       style: {
                         cursor: 'grab',
                         padding: '4px',
@@ -396,110 +497,161 @@ function Edit({
                       },
                       "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Drag to reorder', 'propagate')
                     })
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.FlexItem, {
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.FlexItem, {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
                       variant: selectedVideo === index ? 'primary' : 'secondary',
                       onClick: () => onSelectVideo(video, index),
                       style: {
-                        width: '60px',
-                        height: '60px',
+                        width: '48px',
+                        height: '48px',
                         padding: '0',
                         backgroundImage: video.posterImage?.url || video.thumbnail ? `url(${video.posterImage?.url || video.thumbnail})` : 'none',
                         backgroundSize: 'cover',
                         backgroundPosition: 'center'
                       },
-                      children: !(video.posterImage?.url || video.thumbnail) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("videoIcon", {})
+                      "aria-label": selectedVideo === index ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Selected', 'propagate') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Click to select', 'propagate'),
+                      children: !(video.posterImage?.url || video.thumbnail) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("videoIcon", {})
                     })
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.FlexBlock, {
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
-                      className: "video-info",
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
-                        className: "video-status",
-                        children: selectedVideo === index ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Selected', 'propagate') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Click to select', 'propagate')
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
-                        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Title', 'propagate'),
-                        value: video.customTitle ?? '',
-                        onChange: value => onUpdateVideoTitle(index, value),
-                        placeholder: video.title,
-                        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Leave blank to use the file/video title.', 'propagate'),
-                        __nextHasNoMarginBottom: true
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
-                        className: "video-controls",
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, {
-                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
-                            onSelect: image => onUpdateVideoPoster(index, image),
-                            allowedTypes: ['image'],
-                            value: video.posterImage?.id,
-                            render: ({
-                              open
-                            }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
-                              variant: "secondary",
-                              size: "small",
-                              onClick: open,
-                              children: video.posterImage ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Change Poster', 'propagate') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Add Poster', 'propagate')
-                            })
-                          })
-                        }), video.posterImage && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
-                          variant: "tertiary",
-                          size: "small",
-                          onClick: () => onUpdateVideoPoster(index, null),
-                          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Remove', 'propagate')
-                        })]
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.FlexBlock, {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+                      className: "video-card-summary",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+                        className: "video-card-title",
+                        children: video.videoTitle || video.title
+                      }), video.videoSubtitle && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+                        className: "video-card-subtitle",
+                        children: video.videoSubtitle
                       })]
                     })
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.FlexItem, {
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.FlexItem, {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+                      icon: isExpanded(index) ? _wordpress_icons__WEBPACK_IMPORTED_MODULE_5__["default"] : _wordpress_icons__WEBPACK_IMPORTED_MODULE_4__["default"],
+                      onClick: () => setExpandedVideoIndex(isExpanded(index) ? null : index),
+                      "aria-label": isExpanded(index) ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Collapse', 'propagate') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Expand', 'propagate'),
+                      style: {
+                        padding: '4px',
+                        minWidth: 'auto',
+                        height: 'auto'
+                      }
+                    })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.FlexItem, {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
                       variant: "tertiary",
-                      icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_6__["default"],
+                      icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_8__["default"],
                       onClick: () => onRemoveVideo(index),
-                      isDestructive: true
+                      isDestructive: true,
+                      style: {
+                        padding: '4px',
+                        minWidth: 'auto',
+                        height: 'auto'
+                      }
                     })
                   })]
-                })
+                }), isExpanded(index) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+                  className: "video-card-expanded",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+                    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Title', 'propagate'),
+                    value: video.videoTitle ?? '',
+                    onChange: value => onUpdateVideoField(index, 'videoTitle', value),
+                    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Video title', 'propagate'),
+                    __nextHasNoMarginBottom: true
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+                    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Subtitle', 'propagate'),
+                    value: video.videoSubtitle ?? '',
+                    onChange: value => onUpdateVideoField(index, 'videoSubtitle', value),
+                    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Optional subtitle', 'propagate'),
+                    __nextHasNoMarginBottom: true
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+                    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Player Title', 'propagate'),
+                    value: video.customTitle ?? '',
+                    onChange: value => onUpdateVideoField(index, 'customTitle', value),
+                    placeholder: video.title,
+                    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Displayed above the video player. Defaults to the media/YouTube title.', 'propagate'),
+                    __nextHasNoMarginBottom: true
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+                    className: "video-controls",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, {
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
+                        onSelect: image => onUpdateVideoField(index, 'posterImage', image),
+                        allowedTypes: ['image'],
+                        value: video.posterImage?.id,
+                        render: ({
+                          open
+                        }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+                          variant: "secondary",
+                          size: "small",
+                          onClick: open,
+                          children: video.posterImage ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Change Poster', 'propagate') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Add Poster', 'propagate')
+                        })
+                      })
+                    }), video.posterImage && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+                      variant: "tertiary",
+                      size: "small",
+                      onClick: () => onUpdateVideoField(index, 'posterImage', null),
+                      children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Remove', 'propagate')
+                    })]
+                  })]
+                })]
               })
             }, video.id ?? video.url))
           })]
         })]
-      })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
       ...blockProps,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
         className: "video-testimonial-layout",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
           className: "video-testimonial-content",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
             className: "video-testimonial-editor",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks, {
               template: TEMPLATE,
               templateLock: false
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
-            className: "video-testimonial-thumbnails",
-            children: videos.length > 0 ? videos.map((video, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("button", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+            className: `video-testimonial-thumbnails layout-${videoLayout}`,
+            children: videos.length > 0 ? videos.map((video, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("button", {
               className: `video-thumbnail ${selectedVideo === index ? 'selected' : ''}`,
               onClick: () => onSelectVideo(video, index),
               style: {
-                backgroundImage: video.posterImage?.url || video.thumbnail ? `url(${video.posterImage?.url || video.thumbnail})` : 'none'
+                backgroundImage: videoLayout === 'grid' && (video.posterImage?.url || video.thumbnail) ? `url(${video.posterImage?.url || video.thumbnail})` : 'none'
               },
-              children: !(video.posterImage?.url || video.thumbnail) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("videoIcon", {})
-            }, video.id ?? video.url)) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Placeholder, {
-              icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_7__["default"],
+              children: [videoLayout === 'list' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.Fragment, {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("span", {
+                  className: "video-list-thumb",
+                  style: {
+                    backgroundImage: video.posterImage?.url || video.thumbnail ? `url(${video.posterImage?.url || video.thumbnail})` : 'none'
+                  }
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("span", {
+                  className: "video-list-info",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("span", {
+                    className: "video-list-title",
+                    children: video.videoTitle || video.title
+                  }), video.videoSubtitle && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("span", {
+                    className: "video-list-subtitle",
+                    children: video.videoSubtitle
+                  })]
+                })]
+              }), videoLayout === 'grid' && !(video.posterImage?.url || video.thumbnail) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("videoIcon", {})]
+            }, video.id ?? video.url)) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Placeholder, {
+              icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_9__["default"],
               label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('No videos selected', 'propagate'),
               instructions: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Add videos using the block settings panel to create thumbnail buttons.', 'propagate')
             })
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
           className: "video-testimonial-player",
-          children: videos.length > 0 && videos[selectedVideo] ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.Fragment, {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("h3", {
+          children: videos.length > 0 && videos[selectedVideo] ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.Fragment, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("h3", {
               className: "video-title-display",
               children: videos[selectedVideo].customTitle || videos[selectedVideo].title
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
               className: "video-player-container",
               style: {
                 pointerEvents: 'none'
               },
-              children: videos[selectedVideo].type === 'youtube' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("iframe", {
+              children: videos[selectedVideo].type === 'youtube' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("iframe", {
                 src: videos[selectedVideo].url,
                 title: videos[selectedVideo].customTitle || videos[selectedVideo].title,
                 frameBorder: "0",
@@ -509,21 +661,21 @@ function Edit({
                   width: '100%',
                   aspectRatio: '16/9'
                 }
-              }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("video", {
+              }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("video", {
                 controls: true,
                 poster: videos[selectedVideo].thumbnail,
                 style: {
                   width: '100%',
                   height: 'auto'
                 },
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("source", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("source", {
                   src: videos[selectedVideo].url,
                   type: "video/mp4"
                 }), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Your browser does not support the video tag.', 'propagate')]
               })
             })]
-          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Placeholder, {
-            icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_7__["default"],
+          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Placeholder, {
+            icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_9__["default"],
             label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Video Player', 'propagate'),
             instructions: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Select a video to display the player.', 'propagate')
           })
@@ -589,13 +741,15 @@ function save({
 }) {
   const {
     videos,
-    selectedVideo
+    selectedVideo,
+    videoLayout
   } = attributes;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
     ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps.save({
       className: "video-testimonial-block",
       "data-videos": JSON.stringify(videos),
-      "data-selected-video": selectedVideo
+      "data-selected-video": selectedVideo,
+      "data-video-layout": videoLayout
     }),
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
       className: "video-testimonial-layout",
@@ -605,7 +759,7 @@ function save({
           className: "video-testimonial-editor",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.InnerBlocks.Content, {})
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-          className: "video-testimonial-thumbnails",
+          className: `video-testimonial-thumbnails layout-${videoLayout}`,
           "data-video-thumbnails": true
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {

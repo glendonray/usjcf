@@ -30,6 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Get block attributes from data attributes
     const videos = JSON.parse(block.dataset.videos || "[]");
     const selectedVideo = parseInt(block.dataset.selectedVideo || "0");
+    const videoLayout = block.dataset.videoLayout || "grid";
 
     const thumbnailsContainer = block.querySelector("[data-video-thumbnails]");
     const playerContainer = block.querySelector("[data-video-player]");
@@ -55,25 +56,51 @@ document.addEventListener("DOMContentLoaded", function () {
         // Use poster image if available, otherwise fall back to thumbnail
         const displayImage = video.posterImage?.url || video.thumbnail;
 
-        if (displayImage && displayImage !== "") {
-          thumbnailButton.style.backgroundImage = `url(${displayImage})`;
-          thumbnailButton.style.backgroundSize = "cover";
-          thumbnailButton.style.backgroundPosition = "center";
-          // Add a subtle play icon overlay for video thumbnails
-          thumbnailButton.innerHTML = `
-						<div class="video-thumbnail-overlay">
-							<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-								<path d="M8 5v14l11-7z"/>
-							</svg>
-						</div>
-					`;
+        if (videoLayout === "list") {
+          // List layout: thumbnail + title + subtitle in a row
+          const thumbSpan = document.createElement("span");
+          thumbSpan.className = "video-list-thumb";
+          if (displayImage) {
+            thumbSpan.style.backgroundImage = `url(${displayImage})`;
+          }
+
+          const infoSpan = document.createElement("span");
+          infoSpan.className = "video-list-info";
+
+          const titleSpan = document.createElement("span");
+          titleSpan.className = "video-list-title";
+          titleSpan.textContent = video.videoTitle || video.title;
+          infoSpan.appendChild(titleSpan);
+
+          if (video.videoSubtitle) {
+            const subtitleSpan = document.createElement("span");
+            subtitleSpan.className = "video-list-subtitle";
+            subtitleSpan.textContent = video.videoSubtitle;
+            infoSpan.appendChild(subtitleSpan);
+          }
+
+          thumbnailButton.appendChild(thumbSpan);
+          thumbnailButton.appendChild(infoSpan);
         } else {
-          // Fallback: show a generic video icon
-          thumbnailButton.innerHTML = `
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M8 5v14l11-7z"/>
-                        </svg>
-                    `;
+          // Grid layout: square thumbnail buttons (existing behavior)
+          if (displayImage && displayImage !== "") {
+            thumbnailButton.style.backgroundImage = `url(${displayImage})`;
+            thumbnailButton.style.backgroundSize = "cover";
+            thumbnailButton.style.backgroundPosition = "center";
+            thumbnailButton.innerHTML = `
+              <div class="video-thumbnail-overlay">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+              </div>
+            `;
+          } else {
+            thumbnailButton.innerHTML = `
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            `;
+          }
         }
 
         // Add click handler

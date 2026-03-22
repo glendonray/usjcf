@@ -1,7 +1,7 @@
 import { useBlockProps, InnerBlocks } from "@wordpress/block-editor";
 
 export default function save({ attributes }) {
-	const { videos, selectedVideo } = attributes;
+	const { videos, selectedVideo, videoLayout } = attributes;
 
 	return (
 		<div
@@ -9,6 +9,7 @@ export default function save({ attributes }) {
 				className: "video-testimonial-block",
 				"data-videos": JSON.stringify(videos),
 				"data-selected-video": selectedVideo,
+				"data-video-layout": videoLayout,
 			})}
 		>
 			<div className="video-testimonial-layout">
@@ -18,7 +19,7 @@ export default function save({ attributes }) {
 						<InnerBlocks.Content />
 					</div>
 					{/* Video Thumbnail Buttons - These will be handled by frontend JavaScript */}
-					<div className="video-testimonial-thumbnails" data-video-thumbnails>
+					<div className={`video-testimonial-thumbnails layout-${videoLayout}`} data-video-thumbnails>
 						{/* Thumbnails will be populated by frontend JavaScript */}
 					</div>
 				</div>

@@ -35,17 +35,22 @@
   margin-bottom: 0;
 }
 .video-testimonial-block .video-testimonial-thumbnails {
-  display: flex;
+  display: grid;
   gap: 16px;
-  flex-wrap: wrap;
   padding-top: 32px;
   border-top: 1px solid rgba(18, 41, 61, 0.33);
+}
+.video-testimonial-block .video-testimonial-thumbnails.layout-grid {
+  grid-template-columns: repeat(auto-fill, 75px);
+}
+.video-testimonial-block .video-testimonial-thumbnails.layout-list {
+  grid-template-columns: 1fr;
 }
 .video-testimonial-block .video-testimonial-thumbnails .video-thumbnail {
   width: 75px;
   height: 75px;
-  border: 2px solid transparent;
-  border-radius: 3px;
+  border: none;
+  border-radius: 4px;
   background: #f0f0f0;
   background-size: cover;
   background-position: center;
@@ -58,24 +63,6 @@
   position: relative;
   overflow: hidden;
   counter-increment: thumbnail;
-  /* background: var(--color-sea) !important; */
-}
-.video-testimonial-block .video-testimonial-thumbnails .video-thumbnail:before {
-  /* content: counter(thumbnail); */
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: var(--color-white);
-  font-size: 2rem;
-  line-height: 1;
-  font-weight: bold;
-  text-align: center;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 .video-testimonial-block .video-testimonial-thumbnails .video-thumbnail[style*="img.youtube"] {
   background-size: 190% !important;
@@ -119,7 +106,7 @@
   box-shadow: 0 4px 12px rgba(0, 124, 186, 0.2);
 }
 .video-testimonial-block .video-testimonial-thumbnails .video-thumbnail:hover svg {
-  color: #007cba;
+  color: var(--color-orange);
 }
 .video-testimonial-block .video-testimonial-thumbnails .video-thumbnail.selected {
   border-color: var(--color-orange);
@@ -159,6 +146,56 @@
 .video-testimonial-block .video-testimonial-thumbnails .video-thumbnail:focus {
   outline: 2px solid #007cba;
   outline-offset: 2px;
+}
+.video-testimonial-block .video-testimonial-thumbnails.layout-list .video-thumbnail {
+  width: 100%;
+  height: auto;
+  padding: 8px;
+  justify-content: flex-start;
+  gap: 12px;
+  text-align: left;
+  background-image: none !important;
+  background: #f0f0f0;
+}
+.video-testimonial-block .video-testimonial-thumbnails.layout-list .video-thumbnail:hover {
+  transform: none;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.video-testimonial-block .video-testimonial-thumbnails.layout-list .video-thumbnail.selected {
+  border: 1px solid var(--color-orange);
+  box-shadow: 0 0 0 1px rgba(0, 124, 186, 0.1);
+}
+.video-testimonial-block .video-testimonial-thumbnails.layout-list .video-thumbnail .video-list-thumb {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 4px;
+  background-size: cover;
+  background-position: center;
+  background-color: #ddd;
+  display: block;
+}
+.video-testimonial-block .video-testimonial-thumbnails.layout-list .video-thumbnail .video-list-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.video-testimonial-block .video-testimonial-thumbnails.layout-list .video-thumbnail .video-list-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.video-testimonial-block .video-testimonial-thumbnails.layout-list .video-thumbnail .video-list-subtitle {
+  font-size: 0.85rem;
+  color: #666;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .video-testimonial-block .video-testimonial-player {
   position: relative;
@@ -249,10 +286,17 @@
 .video-testimonial-block .video-testimonial-player .video-placeholder:hover .video-placeholder-icon {
   opacity: 0.7;
 }
-.block-editor .video-testimonial-block .video-testimonial-thumbnails .video-thumbnail {
+.block-editor .video-testimonial-block .video-testimonial-thumbnails.layout-grid .video-thumbnail {
   pointer-events: none;
 }
-.block-editor .video-testimonial-block .video-testimonial-thumbnails .video-thumbnail:hover {
+.block-editor .video-testimonial-block .video-testimonial-thumbnails.layout-grid .video-thumbnail:hover {
+  transform: none;
+  box-shadow: none;
+}
+.block-editor .video-testimonial-block .video-testimonial-thumbnails.layout-list .video-thumbnail {
+  pointer-events: none;
+}
+.block-editor .video-testimonial-block .video-testimonial-thumbnails.layout-list .video-thumbnail:hover {
   transform: none;
   box-shadow: none;
 }
@@ -278,6 +322,9 @@
   border-color: #007cba;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+.components-panel__body .video-testimonial-video-card.is-expanded {
+  border-color: #007cba;
+}
 .components-panel__body .video-testimonial-video-card .components-card__body {
   padding: 8px !important;
 }
@@ -285,74 +332,55 @@
   align-items: center;
   gap: 8px;
 }
-.components-panel__body .video-testimonial-video-card .components-button[aria-label*=Drag] {
-  padding: 2px !important;
-  min-width: 20px !important;
-  height: 20px !important;
-  margin-right: 4px;
-  opacity: 0.6;
-  transition: opacity 0.2s ease;
-}
-.components-panel__body .video-testimonial-video-card .components-button[aria-label*=Drag]:hover {
-  opacity: 1;
-}
-.components-panel__body .video-testimonial-video-card .components-button[style*=background-image] {
-  width: 40px !important;
-  height: 40px !important;
-  padding: 0 !important;
-  border-radius: 4px;
-  flex-shrink: 0;
-}
-.components-panel__body .video-testimonial-video-card .components-flex-item:nth-child(3) {
-  flex: 1;
+.components-panel__body .video-testimonial-video-card .video-card-summary {
   min-width: 0;
 }
-.components-panel__body .video-testimonial-video-card .video-info {
-  padding: 0;
-  margin: 0;
-}
-.components-panel__body .video-testimonial-video-card .video-info .video-title {
+.components-panel__body .video-testimonial-video-card .video-card-summary .video-card-title {
   font-weight: 600;
   font-size: 13px;
-  line-height: 1.2;
-  margin: 0 0 2px 0;
+  line-height: 1.3;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.components-panel__body .video-testimonial-video-card .video-info .video-status {
+.components-panel__body .video-testimonial-video-card .video-card-summary .video-card-subtitle {
   font-size: 11px;
   color: #666;
-  margin: 0 0 4px 0;
-  line-height: 1.2;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 1px;
 }
-.components-panel__body .video-testimonial-video-card .video-info .video-controls {
+.components-panel__body .video-testimonial-video-card .video-card-expanded {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.components-panel__body .video-testimonial-video-card .video-card-expanded .video-controls {
   display: flex;
   gap: 4px;
   flex-wrap: wrap;
 }
-.components-panel__body .video-testimonial-video-card .video-info .video-controls .components-button {
+.components-panel__body .video-testimonial-video-card .video-card-expanded .video-controls .components-button {
   font-size: 11px !important;
   padding: 2px 6px !important;
   height: auto !important;
   min-height: 20px !important;
   line-height: 1.2 !important;
 }
-.components-panel__body .video-testimonial-video-card .components-button[aria-label*=Remove] {
-  padding: 4px !important;
-  min-width: 24px !important;
-  height: 24px !important;
-  flex-shrink: 0;
-}
 @media (max-width: 768px) {
-  .video-testimonial-block .video-testimonial-thumbnails {
-    justify-content: center;
+  .video-testimonial-block .video-testimonial-thumbnails.layout-grid {
+    grid-template-columns: repeat(auto-fill, 60px);
   }
-  .video-testimonial-block .video-testimonial-thumbnails .video-thumbnail {
+  .video-testimonial-block .video-testimonial-thumbnails.layout-grid .video-thumbnail {
     width: 60px;
     height: 60px;
   }
-  .video-testimonial-block .video-testimonial-thumbnails .video-thumbnail svg {
+  .video-testimonial-block .video-testimonial-thumbnails.layout-grid .video-thumbnail svg {
     width: 20px;
     height: 20px;
   }
