@@ -158,12 +158,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const ALLOWED_BLOCKS = ["core/heading", "core/paragraph", "core/list", "core/quote", "core/pullquote", "core/separator", "core/spacer"];
-const TEMPLATE = [["core/heading", {
+const TEMPLATE = [['core/heading', {
   level: 2,
-  placeholder: "Enter heading..."
-}], ["core/paragraph", {
-  placeholder: "Enter content..."
+  placeholder: 'Enter heading...'
+}], ['core/paragraph', {
+  placeholder: 'Enter content...'
 }]];
 function getYouTubeId(url) {
   const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\s?#]+)/);
@@ -177,12 +176,12 @@ function Edit({
     videos,
     selectedVideo
   } = attributes;
-  const [youtubeInput, setYoutubeInput] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)("");
+  const [youtubeInput, setYoutubeInput] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)('');
   const [showYoutubeInput, setShowYoutubeInput] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
-    className: "video-testimonial-block",
-    "data-videos": JSON.stringify(videos),
-    "data-selected-video": selectedVideo
+    className: 'video-testimonial-block',
+    'data-videos': JSON.stringify(videos),
+    'data-selected-video': selectedVideo
   });
   const onSelectVideo = (video, index) => {
     setAttributes({
@@ -191,7 +190,7 @@ function Edit({
   };
   const onAddVideo = video => {
     // Try to get thumbnail from various possible sources
-    let thumbnail = "";
+    let thumbnail = '';
     if (video.image?.url) {
       thumbnail = video.image.url;
     } else if (video.sizes?.medium?.url) {
@@ -241,7 +240,7 @@ function Edit({
     }
     const newVideos = [...videos, {
       id: null,
-      type: "youtube",
+      type: 'youtube',
       url: embedUrl,
       youtubeId: videoId,
       title: title,
@@ -251,7 +250,7 @@ function Edit({
     setAttributes({
       videos: newVideos
     });
-    setYoutubeInput("");
+    setYoutubeInput('');
     setShowYoutubeInput(false);
   };
   const onRemoveVideo = index => {
@@ -293,18 +292,18 @@ function Edit({
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
-        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Video Selection", "propagate"),
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Video Selection', 'propagate'),
         initialOpen: true,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Flex, {
           gap: 2,
           style: {
-            marginBottom: "8px"
+            marginBottom: '8px'
           },
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.FlexItem, {
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, {
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
                 onSelect: onAddVideo,
-                allowedTypes: ["video"],
+                allowedTypes: ['video'],
                 value: videos.filter(v => v.id).map(v => v.id),
                 render: ({
                   open
@@ -312,7 +311,7 @@ function Edit({
                   variant: "primary",
                   icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_5__["default"],
                   onClick: open,
-                  children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Media Library", "propagate")
+                  children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Media Library', 'propagate')
                 })
               })
             })
@@ -321,19 +320,19 @@ function Edit({
               variant: "secondary",
               icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_5__["default"],
               onClick: () => setShowYoutubeInput(prev => !prev),
-              children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("YouTube", "propagate")
+              children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('YouTube', 'propagate')
             })
           })]
         }), showYoutubeInput && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
           style: {
-            marginBottom: "8px"
+            marginBottom: '8px'
           },
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
-            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("YouTube URL", "propagate"),
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('YouTube URL', 'propagate'),
             value: youtubeInput,
             onChange: setYoutubeInput,
             placeholder: "https://www.youtube.com/watch?v=...",
-            help: youtubeInput.trim() !== "" && getYouTubeId(youtubeInput.trim()) === null ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Please enter a valid YouTube URL.", "propagate") : ""
+            help: youtubeInput.trim() !== '' && getYouTubeId(youtubeInput.trim()) === null ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Please enter a valid YouTube URL.', 'propagate') : ''
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Flex, {
             gap: 2,
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.FlexItem, {
@@ -341,43 +340,43 @@ function Edit({
                 variant: "primary",
                 onClick: onAddYoutubeVideo,
                 disabled: !getYouTubeId(youtubeInput.trim()),
-                children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Add", "propagate")
+                children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Add', 'propagate')
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.FlexItem, {
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
                 variant: "tertiary",
                 onClick: () => {
                   setShowYoutubeInput(false);
-                  setYoutubeInput("");
+                  setYoutubeInput('');
                 },
-                children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Cancel", "propagate")
+                children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Cancel', 'propagate')
               })
             })]
           })]
         }), videos.length > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
           style: {
-            marginTop: "16px"
+            marginTop: '16px'
           },
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("h4", {
-            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Video Thumbnails", "propagate")
+            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Video Thumbnails', 'propagate')
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
             children: videos.map((video, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Card, {
               className: "video-testimonial-video-card",
               style: {
-                marginBottom: "8px"
+                marginBottom: '8px'
               },
               draggable: true,
               onDragStart: e => {
-                e.dataTransfer.setData("text/plain", index.toString());
-                e.dataTransfer.effectAllowed = "move";
+                e.dataTransfer.setData('text/plain', index.toString());
+                e.dataTransfer.effectAllowed = 'move';
               },
               onDragOver: e => {
                 e.preventDefault();
-                e.dataTransfer.dropEffect = "move";
+                e.dataTransfer.dropEffect = 'move';
               },
               onDrop: e => {
                 e.preventDefault();
-                const dragIndex = parseInt(e.dataTransfer.getData("text/plain"));
+                const dragIndex = parseInt(e.dataTransfer.getData('text/plain'));
                 const dropIndex = index;
                 if (dragIndex !== dropIndex) {
                   onReorderVideos(dragIndex, dropIndex);
@@ -390,24 +389,24 @@ function Edit({
                       variant: "tertiary",
                       icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_4__["default"],
                       style: {
-                        cursor: "grab",
-                        padding: "4px",
-                        minWidth: "auto",
-                        height: "auto"
+                        cursor: 'grab',
+                        padding: '4px',
+                        minWidth: 'auto',
+                        height: 'auto'
                       },
-                      "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Drag to reorder", "propagate")
+                      "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Drag to reorder', 'propagate')
                     })
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.FlexItem, {
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
-                      variant: selectedVideo === index ? "primary" : "secondary",
+                      variant: selectedVideo === index ? 'primary' : 'secondary',
                       onClick: () => onSelectVideo(video, index),
                       style: {
-                        width: "60px",
-                        height: "60px",
-                        padding: "0",
-                        backgroundImage: video.posterImage?.url || video.thumbnail ? `url(${video.posterImage?.url || video.thumbnail})` : "none",
-                        backgroundSize: "cover",
-                        backgroundPosition: "center"
+                        width: '60px',
+                        height: '60px',
+                        padding: '0',
+                        backgroundImage: video.posterImage?.url || video.thumbnail ? `url(${video.posterImage?.url || video.thumbnail})` : 'none',
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center'
                       },
                       children: !(video.posterImage?.url || video.thumbnail) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("videoIcon", {})
                     })
@@ -416,20 +415,20 @@ function Edit({
                       className: "video-info",
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
                         className: "video-status",
-                        children: selectedVideo === index ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Selected", "propagate") : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Click to select", "propagate")
+                        children: selectedVideo === index ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Selected', 'propagate') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Click to select', 'propagate')
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
-                        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Title", "propagate"),
-                        value: video.customTitle ?? "",
+                        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Title', 'propagate'),
+                        value: video.customTitle ?? '',
                         onChange: value => onUpdateVideoTitle(index, value),
                         placeholder: video.title,
-                        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Leave blank to use the file/video title.", "propagate"),
+                        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Leave blank to use the file/video title.', 'propagate'),
                         __nextHasNoMarginBottom: true
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
                         className: "video-controls",
                         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, {
                           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
                             onSelect: image => onUpdateVideoPoster(index, image),
-                            allowedTypes: ["image"],
+                            allowedTypes: ['image'],
                             value: video.posterImage?.id,
                             render: ({
                               open
@@ -437,14 +436,14 @@ function Edit({
                               variant: "secondary",
                               size: "small",
                               onClick: open,
-                              children: video.posterImage ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Change Poster", "propagate") : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Add Poster", "propagate")
+                              children: video.posterImage ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Change Poster', 'propagate') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Add Poster', 'propagate')
                             })
                           })
                         }), video.posterImage && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
                           variant: "tertiary",
                           size: "small",
                           onClick: () => onUpdateVideoPoster(index, null),
-                          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Remove", "propagate")
+                          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Remove', 'propagate')
                         })]
                       })]
                     })
@@ -471,23 +470,22 @@ function Edit({
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
             className: "video-testimonial-editor",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks, {
-              allowedBlocks: ALLOWED_BLOCKS,
               template: TEMPLATE,
               templateLock: false
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
             className: "video-testimonial-thumbnails",
             children: videos.length > 0 ? videos.map((video, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("button", {
-              className: `video-thumbnail ${selectedVideo === index ? "selected" : ""}`,
+              className: `video-thumbnail ${selectedVideo === index ? 'selected' : ''}`,
               onClick: () => onSelectVideo(video, index),
               style: {
-                backgroundImage: video.posterImage?.url || video.thumbnail ? `url(${video.posterImage?.url || video.thumbnail})` : "none"
+                backgroundImage: video.posterImage?.url || video.thumbnail ? `url(${video.posterImage?.url || video.thumbnail})` : 'none'
               },
               children: !(video.posterImage?.url || video.thumbnail) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("videoIcon", {})
             }, video.id ?? video.url)) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Placeholder, {
               icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_7__["default"],
-              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("No videos selected", "propagate"),
-              instructions: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Add videos using the block settings panel to create thumbnail buttons.", "propagate")
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('No videos selected', 'propagate'),
+              instructions: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Add videos using the block settings panel to create thumbnail buttons.', 'propagate')
             })
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
@@ -499,35 +497,35 @@ function Edit({
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
               className: "video-player-container",
               style: {
-                pointerEvents: "none"
+                pointerEvents: 'none'
               },
-              children: videos[selectedVideo].type === "youtube" ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("iframe", {
+              children: videos[selectedVideo].type === 'youtube' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("iframe", {
                 src: videos[selectedVideo].url,
                 title: videos[selectedVideo].customTitle || videos[selectedVideo].title,
                 frameBorder: "0",
                 allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
                 allowFullScreen: true,
                 style: {
-                  width: "100%",
-                  aspectRatio: "16/9"
+                  width: '100%',
+                  aspectRatio: '16/9'
                 }
               }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("video", {
                 controls: true,
                 poster: videos[selectedVideo].thumbnail,
                 style: {
-                  width: "100%",
-                  height: "auto"
+                  width: '100%',
+                  height: 'auto'
                 },
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("source", {
                   src: videos[selectedVideo].url,
                   type: "video/mp4"
-                }), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Your browser does not support the video tag.", "propagate")]
+                }), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Your browser does not support the video tag.', 'propagate')]
               })
             })]
           }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Placeholder, {
             icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_7__["default"],
-            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Video Player", "propagate"),
-            instructions: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Select a video to display the player.", "propagate")
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Video Player', 'propagate'),
+            instructions: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Select a video to display the player.', 'propagate')
           })
         })]
       })
