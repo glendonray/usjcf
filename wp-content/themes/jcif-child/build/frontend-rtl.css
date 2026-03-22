@@ -2579,6 +2579,6 @@ header.site-header #main-header .site-main-header-wrap .site-main-header-inner-w
   display: none;
 }
 
-.content-style-boxed .site-main {
+.content-style-boxed .site-main .content-bg {
   border-radius: 16px;
 }
