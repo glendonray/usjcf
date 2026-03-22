@@ -79,8 +79,7 @@
 				justify-content: center;
 			}
 
-			&[data-video-url*="youtube"],
-			&[style*="youtube"] {
+			&[style*="img.youtube"] {
 				background-size: 190% !important;
 			}
 

@@ -77,7 +77,7 @@
   align-items: center;
   justify-content: center;
 }
-.video-testimonial-block .video-testimonial-thumbnails .video-thumbnail[data-video-url*=youtube], .video-testimonial-block .video-testimonial-thumbnails .video-thumbnail[style*=youtube] {
+.video-testimonial-block .video-testimonial-thumbnails .video-thumbnail[style*="img.youtube"] {
   background-size: 190% !important;
 }
 .video-testimonial-block .video-testimonial-thumbnails .video-thumbnail svg {
