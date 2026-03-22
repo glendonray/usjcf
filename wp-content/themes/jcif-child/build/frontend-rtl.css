@@ -2568,3 +2568,17 @@ header.site-header #main-header .site-main-header-wrap .site-main-header-inner-w
   font-weight: 400;
   line-height: rem-calc(20);
 }
+
+.kb-table-of-content-nav .kb-table-of-content-wrap .kb-table-of-content-list {
+  margin-top: 0 !important;
+  list-style-type: none !important;
+  padding-right: 0 !important;
+}
+
+.wp-block-post-excerpt .wp-block-post-excerpt__excerpt .wp-block-post-excerpt__more-link {
+  display: none;
+}
+
+.content-style-boxed .site-main {
+  border-radius: 16px;
+}

@@ -58,10 +58,10 @@
   position: relative;
   overflow: hidden;
   counter-increment: thumbnail;
-  background: var(--color-sea) !important;
+  /* background: var(--color-sea) !important; */
 }
 .video-testimonial-block .video-testimonial-thumbnails .video-thumbnail:before {
-  content: counter(thumbnail);
+  /* content: counter(thumbnail); */
   position: absolute;
   top: 50%;
   right: 50%;
