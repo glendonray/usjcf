@@ -26,6 +26,8 @@ document.addEventListener("DOMContentLoaded", function () {
     videoTestimonialBlocks.forEach((block) => observer.observe(block));
   }
 
+  let comboboxCounter = 0;
+
   function initBlock(block) {
     // Get block attributes from data attributes
     const videos = JSON.parse(block.dataset.videos || "[]");
@@ -39,84 +41,225 @@ document.addEventListener("DOMContentLoaded", function () {
     if (thumbnailsContainer && videos.length > 0) {
       thumbnailsContainer.innerHTML = "";
 
-      videos.forEach((video, index) => {
-        const displayTitle = video.customTitle || video.title;
-        const thumbnailButton = document.createElement("button");
-        thumbnailButton.className = `video-thumbnail ${
-          selectedVideo === index ? "selected" : ""
-        }`;
-        thumbnailButton.setAttribute("data-video-index", index);
-        thumbnailButton.setAttribute("data-video-url", video.url);
-        thumbnailButton.setAttribute("data-video-title", displayTitle);
-        thumbnailButton.setAttribute(
+      if (isMobile) {
+        // Mobile: render a combobox (input + listbox) instead of thumbnail buttons
+        thumbnailsContainer.classList.add("is-combobox");
+        const listboxId = `video-combobox-listbox-${comboboxCounter++}`;
+
+        const wrapper = document.createElement("div");
+        wrapper.className = "video-combobox";
+
+        const input = document.createElement("input");
+        input.type = "text";
+        input.className = "video-combobox-input";
+        input.setAttribute(
           "aria-label",
-          `Select video: ${displayTitle}`,
+          __("Select a video", "video-testimonial"),
         );
+        input.setAttribute("aria-autocomplete", "list");
+        input.setAttribute("aria-controls", listboxId);
+        input.setAttribute("autocomplete", "off");
+        input.setAttribute("placeholder", __("Select a video…", "video-testimonial"));
 
-        // Use poster image if available, otherwise fall back to thumbnail
-        const displayImage = video.posterImage?.url || video.thumbnail;
+        const initialVideo = videos[selectedVideo];
+        if (initialVideo) {
+          input.value =
+            initialVideo.videoTitle ||
+            initialVideo.customTitle ||
+            initialVideo.title;
+        }
 
-        if (videoLayout === "list") {
-          // List layout: thumbnail + title + subtitle in a row
-          const thumbSpan = document.createElement("span");
-          thumbSpan.className = "video-list-thumb";
-          if (displayImage) {
-            thumbSpan.style.backgroundImage = `url(${displayImage})`;
+        const listbox = document.createElement("ul");
+        listbox.className = "video-combobox-listbox";
+        listbox.setAttribute("role", "listbox");
+        listbox.id = listboxId;
+
+        let highlightedIndex = selectedVideo;
+
+        const optionItems = videos.map((video, index) => {
+          const optionTitle =
+            video.videoTitle || video.customTitle || video.title;
+          const li = document.createElement("li");
+          li.className = "video-combobox-option";
+          li.setAttribute("role", "option");
+          li.setAttribute("data-index", index);
+          li.setAttribute(
+            "aria-selected",
+            index === selectedVideo ? "true" : "false",
+          );
+          li.textContent = optionTitle;
+          if (index === selectedVideo) li.classList.add("is-selected");
+
+          li.addEventListener("mousedown", function (e) {
+            e.preventDefault(); // keep input focused
+            selectOption(index);
+          });
+
+          return li;
+        });
+
+        optionItems.forEach((li) => listbox.appendChild(li));
+
+        let committedValue = input.value;
+
+        function openListbox() {
+          if (wrapper.getAttribute("aria-expanded") === "true") return;
+          wrapper.setAttribute("aria-expanded", "true");
+          input.value = "";
+          filterOptions("");
+        }
+
+        function closeListbox() {
+          wrapper.setAttribute("aria-expanded", "false");
+          input.value = committedValue;
+        }
+
+        function filterOptions(query) {
+          const lower = query.toLowerCase().trim();
+          optionItems.forEach((li) => {
+            li.hidden = lower !== "" && !li.textContent.toLowerCase().includes(lower);
+          });
+        }
+
+        function highlightOption(index) {
+          optionItems.forEach((li, i) =>
+            li.classList.toggle("is-highlighted", i === index),
+          );
+          optionItems[index]?.scrollIntoView({ block: "nearest" });
+          highlightedIndex = index;
+        }
+
+        function selectOption(index) {
+          const video = videos[index];
+          const title = video.videoTitle || video.customTitle || video.title;
+          committedValue = title;
+          optionItems.forEach((li, i) => {
+            const active = i === index;
+            li.setAttribute("aria-selected", active ? "true" : "false");
+            li.classList.toggle("is-selected", active);
+          });
+          highlightedIndex = index;
+          closeListbox();
+          updateVideoPlayer(playerContainer, video);
+        }
+
+        input.addEventListener("focus", openListbox);
+        input.addEventListener("click", openListbox);
+
+        input.addEventListener("input", function () {
+          openListbox();
+          filterOptions(this.value);
+        });
+
+        input.addEventListener("blur", function () {
+          setTimeout(closeListbox, 150);
+        });
+
+        input.addEventListener("keydown", function (e) {
+          const visible = optionItems.filter((li) => !li.hidden);
+          const pos = visible.findIndex((li) =>
+            li.classList.contains("is-highlighted"),
+          );
+
+          if (e.key === "ArrowDown") {
+            e.preventDefault();
+            const next = visible[Math.min(pos + 1, visible.length - 1)];
+            if (next) highlightOption(optionItems.indexOf(next));
+          } else if (e.key === "ArrowUp") {
+            e.preventDefault();
+            const prev = visible[Math.max(pos - 1, 0)];
+            if (prev) highlightOption(optionItems.indexOf(prev));
+          } else if (e.key === "Enter") {
+            e.preventDefault();
+            if (visible[pos]) selectOption(optionItems.indexOf(visible[pos]));
+          } else if (e.key === "Escape") {
+            closeListbox();
           }
+        });
 
-          const infoSpan = document.createElement("span");
-          infoSpan.className = "video-list-info";
+        wrapper.appendChild(input);
+        wrapper.appendChild(listbox);
+        thumbnailsContainer.appendChild(wrapper);
+      } else {
+        videos.forEach((video, index) => {
+          const displayTitle = video.customTitle || video.title;
+          const thumbnailButton = document.createElement("button");
+          thumbnailButton.className = `video-thumbnail ${
+            selectedVideo === index ? "selected" : ""
+          }`;
+          thumbnailButton.setAttribute("data-video-index", index);
+          thumbnailButton.setAttribute("data-video-url", video.url);
+          thumbnailButton.setAttribute("data-video-title", displayTitle);
+          thumbnailButton.setAttribute(
+            "aria-label",
+            `Select video: ${displayTitle}`,
+          );
 
-          const titleSpan = document.createElement("span");
-          titleSpan.className = "video-list-title";
-          titleSpan.textContent = video.videoTitle || video.title;
-          infoSpan.appendChild(titleSpan);
+          // Use poster image if available, otherwise fall back to thumbnail
+          const displayImage = video.posterImage?.url || video.thumbnail;
 
-          if (video.videoSubtitle) {
-            const subtitleSpan = document.createElement("span");
-            subtitleSpan.className = "video-list-subtitle";
-            subtitleSpan.textContent = video.videoSubtitle;
-            infoSpan.appendChild(subtitleSpan);
-          }
+          if (videoLayout === "list") {
+            // List layout: thumbnail + title + subtitle in a row
+            const thumbSpan = document.createElement("span");
+            thumbSpan.className = "video-list-thumb";
+            if (displayImage) {
+              thumbSpan.style.backgroundImage = `url(${displayImage})`;
+            }
 
-          thumbnailButton.appendChild(thumbSpan);
-          thumbnailButton.appendChild(infoSpan);
-        } else {
-          // Grid layout: square thumbnail buttons (existing behavior)
-          if (displayImage && displayImage !== "") {
-            thumbnailButton.style.backgroundImage = `url(${displayImage})`;
-            thumbnailButton.style.backgroundSize = "cover";
-            thumbnailButton.style.backgroundPosition = "center";
-            thumbnailButton.innerHTML = `
+            const infoSpan = document.createElement("span");
+            infoSpan.className = "video-list-info";
+
+            const titleSpan = document.createElement("span");
+            titleSpan.className = "video-list-title";
+            titleSpan.textContent = video.videoTitle || video.title;
+            infoSpan.appendChild(titleSpan);
+
+            if (video.videoSubtitle) {
+              const subtitleSpan = document.createElement("span");
+              subtitleSpan.className = "video-list-subtitle";
+              subtitleSpan.textContent = video.videoSubtitle;
+              infoSpan.appendChild(subtitleSpan);
+            }
+
+            thumbnailButton.appendChild(thumbSpan);
+            thumbnailButton.appendChild(infoSpan);
+          } else {
+            // Grid layout: square thumbnail buttons (existing behavior)
+            if (displayImage && displayImage !== "") {
+              thumbnailButton.style.backgroundImage = `url(${displayImage})`;
+              thumbnailButton.style.backgroundSize = "cover";
+              thumbnailButton.style.backgroundPosition = "center";
+              thumbnailButton.innerHTML = `
               <div class="video-thumbnail-overlay">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M8 5v14l11-7z"/>
                 </svg>
               </div>
             `;
-          } else {
-            thumbnailButton.innerHTML = `
+            } else {
+              thumbnailButton.innerHTML = `
               <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M8 5v14l11-7z"/>
               </svg>
             `;
+            }
           }
-        }
 
-        // Add click handler
-        thumbnailButton.addEventListener("click", function () {
-          // Update selected state
-          thumbnailsContainer
-            .querySelectorAll(".video-thumbnail")
-            .forEach((t) => t.classList.remove("selected"));
-          this.classList.add("selected");
+          // Add click handler
+          thumbnailButton.addEventListener("click", function () {
+            // Update selected state
+            thumbnailsContainer
+              .querySelectorAll(".video-thumbnail")
+              .forEach((t) => t.classList.remove("selected"));
+            this.classList.add("selected");
 
-          // Update video player
-          updateVideoPlayer(playerContainer, video);
+            // Update video player
+            updateVideoPlayer(playerContainer, video);
+          });
+
+          thumbnailsContainer.appendChild(thumbnailButton);
         });
-
-        thumbnailsContainer.appendChild(thumbnailButton);
-      });
+      }
     }
 
     // Initialize video player with selected video
