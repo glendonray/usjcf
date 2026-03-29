@@ -299,6 +299,10 @@ document.addEventListener('DOMContentLoaded', function () {
       closeListbox();
       updateSelectedInfo(video);
       updateVideoPlayer(playerContainer, video);
+      playerContainer?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest'
+      });
     }
     input.addEventListener('focus', openListbox);
     input.addEventListener('click', openListbox);
